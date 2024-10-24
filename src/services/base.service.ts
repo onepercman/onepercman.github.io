@@ -1,5 +1,5 @@
 import { API_URL } from "@/config/endpoints.config"
-import userStore from "@/features/user/user.store"
+import { UserStore } from "@/features/user/user.store"
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -11,7 +11,7 @@ import { camelizeKeys, decamelizeKeys } from "humps"
 
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
-    const { jwt } = userStore
+    const { jwt } = UserStore
     if (jwt && config.headers.Authorization) {
       config.headers.Authorization = `Bearer ${jwt}`
     }
