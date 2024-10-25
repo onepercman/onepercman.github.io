@@ -28,11 +28,25 @@ const experienceData = [
         link: "https://github.com/onepercman/mojaui",
       },
       {
-        id: 1,
+        id: 3,
         name: "Tailwind-schemes",
         description:
           "First open-source plugin to support dynamic color settings for multiple themes on TailwindCSS. Reached 1300+ downloads in the first week of release (v1.0).",
         link: "https://github.com/onepercman/tailwind-schemes",
+      },
+      {
+        id: 4,
+        name: "react-tvcx",
+        description:
+          "react-tvcx is a library that provides functions to help users create a reusable component system for their projects using React, Tailwind CSS, and TypeScript. It simplifies the creation and management of components with support for variant styles and context-based slot management.",
+        link: "https://github.com/onepercman/react-tvcx",
+      },
+      {
+        id: 5,
+        name: "use-valtio-store",
+        description:
+          "This React hook provides a way to manage state using Valtio, supporting persistent states with localStorage and sessionStorage.",
+        link: "https://github.com/onepercman/use-valtio-store",
       },
     ],
   },
