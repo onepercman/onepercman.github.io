@@ -1,8 +1,8 @@
 import { ColorPicker } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { colorPicker } from "./variants"
 
-const { withRoot, withSlot } = createCtx(colorPicker)
+const { withRoot, withSlot } = createComponentFactory(colorPicker)
 
 const Root = withRoot(ColorPicker.Root)
 const RootProvider = withRoot(ColorPicker.RootProvider)
@@ -34,7 +34,7 @@ const ValueSwatch = withSlot(ColorPicker.ValueSwatch)
 const ValueText = withSlot(ColorPicker.ValueText)
 const View = withSlot(ColorPicker.View)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Area,

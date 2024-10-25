@@ -1,8 +1,8 @@
 import React from "react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { table } from "./variants"
 
-const { withRoot, withSlot } = createCtx(table)
+const { withRoot, withSlot } = createComponentFactory(table)
 
 const Root = withRoot("div", "base")
 const Table = withSlot("table", "table")
@@ -33,6 +33,8 @@ export const Wrapper = React.forwardRef<
   )
 })
 
+Wrapper.displayName = "TableWrapper"
+
 export const Header = React.forwardRef<
   React.ComponentRef<typeof Head>,
   React.ComponentProps<typeof Head>
@@ -44,7 +46,9 @@ export const Header = React.forwardRef<
   )
 })
 
-export const Component = createNested(Wrapper, {
+Header.displayName = "TableHeader"
+
+export const Component = createComponentTree(Wrapper, {
   Root,
   Table,
   Head,

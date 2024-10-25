@@ -1,7 +1,8 @@
-import { Button, cn, Collapsible } from "@/libs/atoms"
+import { Button, Collapsible } from "@/libs/atoms"
 import { motion, useInView } from "framer-motion"
 import { FC, useRef } from "react"
 import { LuArrowRight, LuExternalLink } from "react-icons/lu"
+import { cn } from "react-tvcx"
 
 const experienceData = [
   {

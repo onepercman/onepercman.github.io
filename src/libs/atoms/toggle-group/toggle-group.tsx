@@ -1,15 +1,15 @@
 import { ToggleGroup } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { toggleGroup } from "./variants"
 
-const { withRoot, withSlot } = createCtx(toggleGroup)
+const { withRoot, withSlot } = createComponentFactory(toggleGroup)
 
 const Root = withRoot(ToggleGroup.Root)
 const RootProvider = withRoot(ToggleGroup.RootProvider)
 const Context = withSlot(ToggleGroup.Context)
 const Item = withSlot(ToggleGroup.Item)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   RootProvider,
   Context,
   Item,

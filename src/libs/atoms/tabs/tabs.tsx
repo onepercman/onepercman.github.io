@@ -1,9 +1,9 @@
 import { Tabs } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { tabs } from "./variants"
 
-const { withRoot, withSlot } = createCtx(tabs)
+const { withRoot, withSlot } = createComponentFactory(tabs)
 
 const Root = withRoot(Tabs.Root, "base")
 const Content = withSlot(Tabs.Content, "content")
@@ -14,7 +14,7 @@ const RootProvider = withSlot(Tabs.RootProvider)
 const Trigger = withSlot(Tabs.Trigger, "trigger")
 
 const CustomList = React.forwardRef<
-  HTMLElement,
+  React.ElementRef<typeof List>,
   React.ComponentPropsWithoutRef<typeof List>
 >(function ({ children, ...props }, ref) {
   return (
@@ -27,7 +27,7 @@ const CustomList = React.forwardRef<
 
 CustomList.displayName = "List"
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   Content,
   Context,

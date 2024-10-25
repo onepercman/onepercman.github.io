@@ -1,11 +1,11 @@
 import { Dialog, Portal } from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { confirm, open } from "./fn"
 import { dialog } from "./variants"
 
-const { withRoot, withSlot } = createCtx(dialog)
+const { withRoot, withSlot } = createComponentFactory(dialog)
 
 const Root = withRoot(Dialog.Root)
 const RootProvider = withSlot(Dialog.RootProvider)
@@ -37,7 +37,7 @@ const CustomContent = React.forwardRef<
 CustomContent.displayName = "Content"
 
 const CustomCloseTrigger = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof CloseTrigger>,
   React.ComponentPropsWithoutRef<typeof CloseTrigger>
 >(function ({ children, ...props }, ref) {
   return (
@@ -49,7 +49,7 @@ const CustomCloseTrigger = React.forwardRef<
 
 CustomCloseTrigger.displayName = "CloseTrigger"
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Backdrop,

@@ -1,8 +1,8 @@
 import { NumberInput } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { numberInput } from "./variants"
 
-const { withRoot, withSlot } = createCtx(numberInput)
+const { withRoot, withSlot } = createComponentFactory(numberInput)
 
 const Root = withRoot(NumberInput.Root)
 const RootProvider = withRoot(NumberInput.RootProvider)
@@ -15,7 +15,7 @@ const Label = withSlot(NumberInput.Label)
 const Scrubber = withSlot(NumberInput.Scrubber)
 const ValueText = withSlot(NumberInput.ValueText)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

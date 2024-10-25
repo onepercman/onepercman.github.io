@@ -1,12 +1,16 @@
 import { Checkbox, CheckboxRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuMinus } from "react-icons/lu"
+import {
+  ComponentMetadata,
+  ComposedTVProps,
+  createComponentFactory,
+  createComponentTree,
+} from "react-tvcx"
 import { Check } from "../check"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createNested } from "../utils"
 import { checkbox } from "./variants"
 
-const { withRoot, withSlot } = createCtx(checkbox)
+const { withRoot, withSlot } = createComponentFactory(checkbox)
 
 const Root = withRoot(Checkbox.Root, "base")
 const RootProvider = withRoot(Checkbox.RootProvider, "base")
@@ -21,19 +25,19 @@ export interface CheckboxProps
   extends CheckboxRootProps,
     ComposedTVProps<typeof checkbox> {}
 
-export interface Checkbox extends ForwardedRefComponent {
+export interface Checkbox extends ComponentMetadata {
   (props: CheckboxProps): React.ReactElement | null
 }
 
 function _bootstrap(
   render: (
     props: CheckboxProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    ref: React.ForwardedRef<React.ElementRef<Checkbox>>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, CheckboxProps>(
+  return React.forwardRef<React.ElementRef<Checkbox>, CheckboxProps>(
     render,
-  ) as unknown as Checkbox
+  ) as Checkbox
 }
 
 export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
@@ -62,7 +66,7 @@ export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   )
 })
 
-export const Component = createNested(CustomRoot, {
+export const Component = createComponentTree(CustomRoot, {
   Root,
   RootProvider,
   Context,

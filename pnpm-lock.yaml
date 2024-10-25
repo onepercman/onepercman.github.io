@@ -50,6 +50,9 @@ importers:
       react-simple-typewriter:
         specifier: ^5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-tvcx:
+        specifier: ^1.0.3
+        version: 1.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.2.1(tailwindcss@3.4.10(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.5.0)(typescript@5.5.4))))
       use-valtio-store:
         specifier: ^1.0.0
         version: 1.0.0(valtio@1.13.2(@types/react@18.3.4)(react@18.3.1))
@@ -2263,6 +2266,13 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
+  react-tvcx@1.0.3:
+    resolution: {integrity: sha512-foBjMuK5D7DvxPawWsuGsFn5I8Y4hFCYIrzgpSQ/Z1xjDdcwf1Xs+9TJSJgrc2EFUAVei1xku6LmyIORMoNdeg==}
+    peerDependencies:
+      react: ^18.3.1
+      react-dom: ^18.3.1
+      tailwind-variants: ^0.2.1
+
   react-twc@1.4.2:
     resolution: {integrity: sha512-ix8Z1dNacL29Vri3rWsQqRYMQXWCNzbI1qhz0yyvcbO057HZwz3rXZDQ7TcOE1hQ7EHornX3ka2reO27RmXiYA==}
 
@@ -2396,6 +2406,9 @@ packages:
 
   tailwind-merge@2.5.2:
     resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
+
+  tailwind-merge@2.5.4:
+    resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
 
   tailwind-schemes@1.7.0:
     resolution: {integrity: sha512-BOwVWXUD12a6EyE25baC7FV1T9h9QurG6GF5idTXqKtYXbtg5ILHUmAU2/kuetiAuc0PGnXmUyI097QSk9k99w==}
@@ -4888,6 +4901,14 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
+  react-tvcx@1.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.2.1(tailwindcss@3.4.10(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.5.0)(typescript@5.5.4)))):
+    dependencies:
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      tailwind-merge: 2.5.4
+      tailwind-variants: 0.2.1(tailwindcss@3.4.10(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.5.0)(typescript@5.5.4)))
+
   react-twc@1.4.2(@types/react@18.3.4)(react@18.3.1):
     dependencies:
       '@radix-ui/react-slot': 1.1.0(@types/react@18.3.4)(react@18.3.1)
@@ -5029,6 +5050,8 @@ snapshots:
   tabbable@6.2.0: {}
 
   tailwind-merge@2.5.2: {}
+
+  tailwind-merge@2.5.4: {}
 
   tailwind-schemes@1.7.0(tailwindcss@3.4.10(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.5.0)(typescript@5.5.4))):
     dependencies:

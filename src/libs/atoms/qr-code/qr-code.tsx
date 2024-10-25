@@ -1,8 +1,8 @@
 import { QrCode } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { qrCode } from "./variants"
 
-const { withRoot, withSlot } = createCtx(qrCode)
+const { withRoot, withSlot } = createComponentFactory(qrCode)
 
 const Root = withRoot(QrCode.Root)
 const RootProvider = withRoot(QrCode.RootProvider)
@@ -11,7 +11,7 @@ const Frame = withSlot(QrCode.Frame)
 const Overlay = withSlot(QrCode.Overlay)
 const Pattern = withSlot(QrCode.Pattern)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

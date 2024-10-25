@@ -33,6 +33,7 @@
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.1",
     "react-simple-typewriter": "^5.0.1",
+    "react-tvcx": "^1.0.3",
     "use-valtio-store": "^1.0.0",
     "valtio": "^1.13.2",
     "zod": "^3.23.8"

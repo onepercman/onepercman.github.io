@@ -1,11 +1,11 @@
 import React from "react"
 import { LuX } from "react-icons/lu"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { Drawer } from "vaul"
-import { createCtx, createNested } from "../utils"
 import { open } from "./fn"
 import { drawer } from "./variants"
 
-const { withRoot, withSlot } = createCtx(drawer)
+const { withRoot, withSlot } = createComponentFactory(drawer)
 
 const Root = withRoot(Drawer.Root)
 const NestedRoot = withSlot(Drawer.NestedRoot)
@@ -34,10 +34,10 @@ const CustomContent = React.forwardRef<
   )
 })
 
-Content.displayName = "Content"
+CustomContent.displayName = "Content"
 
 const CustomCloseTrigger = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof CloseTrigger>,
   React.ComponentPropsWithoutRef<typeof CloseTrigger>
 >(function ({ children, ...props }, ref) {
   return (
@@ -47,9 +47,9 @@ const CustomCloseTrigger = React.forwardRef<
   )
 })
 
-CloseTrigger.displayName = "CloseTrigger"
+CustomCloseTrigger.displayName = "CloseTrigger"
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   NestedRoot,
   Description,

@@ -6,13 +6,17 @@ import {
   LuChevronLeft,
   LuChevronRight,
 } from "react-icons/lu"
+import {
+  ComponentMetadata,
+  ComposedTVProps,
+  createComponentFactory,
+  createComponentTree,
+} from "react-tvcx"
 import { Button } from "../button"
 import { Input as AtomInput, InputProps } from "../input"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createNested } from "../utils"
 import { datePicker } from "./variants"
 
-const { withRoot, withSlot } = createCtx(datePicker)
+const { withRoot, withSlot } = createComponentFactory(datePicker)
 
 const Root = withRoot(DatePicker.Root)
 const RootProvider = withRoot(DatePicker.RootProvider)
@@ -50,7 +54,7 @@ export interface DatePickerCompactProps
   inputProps?: InputProps
 }
 
-export interface DatePicker extends ForwardedRefComponent {
+export interface DatePicker extends ComponentMetadata {
   (props: DatePickerCompactProps): React.ReactElement | null
 }
 
@@ -86,10 +90,11 @@ export const CustomRoot = _bootstrap(function (
             <Input asChild index={1}>
               <AtomInput {...inputProps} />
             </Input>
-            <Trigger asChild onClick={(e) => e.stopPropagation()}>
+            <Trigger asChild>
               <Button
                 shape="square"
                 leftIcon={<LuCalendar className="text-secondary" />}
+                onClick={(e) => e.stopPropagation()}
               />
             </Trigger>
           </Control>
@@ -249,7 +254,7 @@ export const CustomRoot = _bootstrap(function (
   )
 })
 
-export const Component = createNested(CustomRoot, {
+export const Component = createComponentTree(CustomRoot, {
   Root,
   RootProvider,
   ClearTrigger,

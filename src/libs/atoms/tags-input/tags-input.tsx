@@ -1,8 +1,8 @@
 import { TagsInput } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { tagsInput } from "./variants"
 
-const { withRoot, withSlot } = createCtx(tagsInput)
+const { withRoot, withSlot } = createComponentFactory(tagsInput)
 
 const Root = withRoot(TagsInput.Root)
 const RootProvider = withRoot(TagsInput.RootProvider)
@@ -19,7 +19,7 @@ const ItemPreview = withSlot(TagsInput.ItemPreview)
 const ItemText = withSlot(TagsInput.ItemText)
 const Label = withSlot(TagsInput.Label)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

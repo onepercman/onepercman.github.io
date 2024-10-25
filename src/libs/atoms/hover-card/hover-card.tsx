@@ -1,9 +1,9 @@
 import { HoverCard, Portal } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { hoverCard } from "./variants"
 
-const { withRoot, withSlot } = createCtx(hoverCard)
+const { withRoot, withSlot } = createComponentFactory(hoverCard)
 
 const Root = withRoot(HoverCard.Root)
 const RootProvider = withRoot(HoverCard.RootProvider)
@@ -44,7 +44,7 @@ const CustomArrow = React.forwardRef<
 
 CustomArrow.displayName = "Arrow"
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

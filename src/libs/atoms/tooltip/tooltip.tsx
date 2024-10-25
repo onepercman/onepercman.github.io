@@ -1,9 +1,9 @@
 import { Tooltip } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createNested } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { tooltip } from "./variants"
 
-const { withRoot, withSlot } = createCtx(tooltip)
+const { withRoot, withSlot } = createComponentFactory(tooltip)
 
 const Root = withRoot(Tooltip.Root)
 const RootProvider = withRoot(Tooltip.RootProvider)
@@ -42,7 +42,7 @@ const CustomArrow = React.forwardRef<
 
 CustomArrow.displayName = "Arrow"
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,
