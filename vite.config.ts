@@ -10,9 +10,4 @@ export default defineConfig(({ mode }) => ({
     viteTsConfigPaths(),
   ],
   server: { host: true, port: 3000 },
-  define: {
-    "process.env.VITE_GITHUB_TOKEN": JSON.stringify(
-      process.env.VITE_GITHUB_TOKEN,
-    ),
-  },
 }))
