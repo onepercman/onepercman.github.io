@@ -23,10 +23,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Set up environment variables
-        run: echo "VITE_GITHUB_TOKEN=${{ secrets.VITE_GITHUB_TOKEN }}" >> .env
-
       - name: Build project
+        env:
+          VITE_GITHUB_TOKEN: ${{ vars.VITE_GITHUB_TOKEN }}
         run: pnpm build
 
       - name: Upload production-ready build files
