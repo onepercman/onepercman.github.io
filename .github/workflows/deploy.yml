@@ -24,6 +24,8 @@ jobs:
         run: pnpm install
 
       - name: Build project
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
         run: pnpm build
 
       - name: Upload production-ready build files

@@ -51,8 +51,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-tvcx:
-        specifier: ^1.0.4
-        version: 1.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.2.1(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.7.39(@swc/helpers@0.5.13))(@types/node@22.8.1)(typescript@5.6.3))))
+        specifier: ^1.0.5
+        version: 1.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.2.1(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.7.39(@swc/helpers@0.5.13))(@types/node@22.8.1)(typescript@5.6.3))))
       use-valtio-store:
         specifier: ^1.0.1
         version: 1.0.1(valtio@1.13.2(@types/react@18.3.12)(react@18.3.1))
@@ -2201,8 +2201,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  react-tvcx@1.0.4:
-    resolution: {integrity: sha512-SDYovQ5O9qHoclGWBVgGWg259hzbuGC4epqZiel0gPIJ/HEiFL6fDMM37ev3Mh/220bDpoKRfDSZYWpkcUj21g==}
+  react-tvcx@1.0.5:
+    resolution: {integrity: sha512-ph3JL1hoPzBl+NV0TksdEdejcR0uD9faR9yMvqglMZlJMRKxEYyDcYFHw+FrrOK26EabF7JZdvP4KYWN/4UtZQ==}
     peerDependencies:
       react: ^18.3.1
       react-dom: ^18.3.1
@@ -4752,7 +4752,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  react-tvcx@1.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.2.1(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.7.39(@swc/helpers@0.5.13))(@types/node@22.8.1)(typescript@5.6.3)))):
+  react-tvcx@1.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.2.1(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.7.39(@swc/helpers@0.5.13))(@types/node@22.8.1)(typescript@5.6.3)))):
     dependencies:
       clsx: 2.1.1
       react: 18.3.1

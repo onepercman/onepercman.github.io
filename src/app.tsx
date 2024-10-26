@@ -3,6 +3,7 @@ import { LuMail, LuSmartphone } from "react-icons/lu"
 import { contact } from "./features/home/data"
 import { Experience } from "./features/home/experience"
 import { Hero } from "./features/home/hero"
+import { RepoList } from "./features/home/repo-list"
 import { Resume } from "./features/home/resume"
 import "./styles/styles.scss"
 
@@ -12,6 +13,7 @@ export default function App() {
       <Hero />
       <Resume />
       <Experience />
+      <RepoList />
 
       <div className="fixed right-0 top-1/2 z-50 flex -translate-y-1/2 flex-col items-center gap-4 rounded-l border-y border-l border-line/20 p-4 backdrop-blur">
         <a
