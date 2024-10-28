@@ -72,7 +72,7 @@ export const RepoList: FC = () => {
 
   if (isLoading) return <Loader />
 
-  if (!data) return
+  if (!data?.length) return
 
   return (
     <section className="bg-component px-6 py-12 sm:px-8">
