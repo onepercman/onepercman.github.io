@@ -98,7 +98,7 @@ export const Packages: FC = () => {
     <section className="bg-component px-6 py-12 sm:px-8">
       <div className="mx-auto max-w-xl space-y-6">
         <div className="text-2xl font-semibold">My packages</div>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {data.map((item) => (
             <a
               key={item.package.name}
