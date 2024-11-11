@@ -31,7 +31,7 @@ const experienceData = [
     id: 3,
     company: "Moonlab",
     time: "April 2021 — August 2023",
-    image: "https://moonlab.asia/logo/logo.svg",
+    image: "https://moonlab.asia/logo/logo.png",
     description:
       "Head of frontend development team. Provide and ensure frontend technical quality of the company's main products.",
     projects: [
