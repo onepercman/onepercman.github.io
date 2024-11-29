@@ -43,40 +43,22 @@ interface PackageData {
     }
   }
   searchScore: number
-  downloads: number
+  downloads: {
+    weekly: number
+    monthly: number
+  }
 }
 
 async function getNpmPackages(): Promise<PackageData[]> {
   try {
     const packages = await axios.get("https://registry.npmjs.org/-/v1/search", {
       params: {
-        text: `maintainer:onepercman`,
+        text: `author:onepercman`,
         size: 10,
       },
     })
-    const downloadData = await Promise.all(
-      packages.data.objects.map((el: any) => {
-        return (async function () {
-          const stat = await axios.get(
-            `https://api.npmjs.org/downloads/point/last-week/${el.package.name}`,
-            {
-              params: {
-                text: `maintainer:onepercman`,
-                size: 10,
-              },
-            },
-          )
-          return stat.data.downloads
-        })()
-      }),
-    )
 
-    const data = packages.data.objects.map((item: any, index: number) => ({
-      ...item,
-      downloads: downloadData[index],
-    }))
-
-    return data
+    return packages.data.objects
   } catch (err) {
     return []
   }
@@ -121,8 +103,8 @@ export const Packages: FC = () => {
               </div>
               <div className="inline-flex items-center gap-1 text-sm">
                 <LuDownload />
-                <span>{item.downloads}</span>
-                <span className="text-secondary"> - last week</span>
+                <span>{item.downloads.monthly}</span>
+                <span className="text-secondary"> - monthly</span>
               </div>
             </a>
           ))}
