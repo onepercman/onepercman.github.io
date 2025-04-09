@@ -30,7 +30,7 @@ const experienceData = [
   {
     id: 3,
     company: "Moonlab",
-    time: "April 2021 — August 2023",
+    time: "April 2022 — August 2023",
     image: "https://moonlab.asia/logo/logo.png",
     description:
       "Head of frontend development team. Provide and ensure frontend technical quality of the company's main products.",
@@ -81,7 +81,7 @@ const experienceData = [
   {
     id: 4,
     company: "Teracom",
-    time: "June 2020 — April 2021",
+    time: "June 2021 — April 2022",
     image: "https://teracom.vn/teracom-favicon.png",
     description:
       "Participated in developing outsourcing projects for public and private enterprises.",
