@@ -122,8 +122,16 @@ export const Experience: FC = () => {
   const inView = useInView(container, { once: true })
 
   return (
-    <section id="experience" ref={container} className="py-12 pl-16 pr-6">
-      <ol className="relative mx-auto w-full max-w-xl space-y-6 border-s border-line">
+    <section
+      id="experience"
+      ref={container}
+      className="py-12 pl-16 pr-6"
+      aria-label="Work experience"
+    >
+      <ol
+        className="relative mx-auto w-full max-w-xl space-y-6 border-s border-line"
+        role="list"
+      >
         {experienceData.map((experience, index) => (
           <motion.li
             key={experience.id}
@@ -132,6 +140,7 @@ export const Experience: FC = () => {
             animate={inView ? "start" : "idle"}
             transition={{ delay: index / 2 }}
             className="ms-8"
+            role="listitem"
           >
             <motion.span
               variants={{ start: { opacity: "100%" } }}
@@ -140,7 +149,12 @@ export const Experience: FC = () => {
               transition={{ delay: index / 2 + index / 2 }}
               className="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-component ring-8 ring-component"
             >
-              <img className="rounded-full shadow-lg" src={experience.image} />
+              <img
+                className="rounded-full shadow-lg"
+                src={experience.image}
+                alt={`${experience.company} logo`}
+                loading="lazy"
+              />
             </motion.span>
             <div className="rounded-lg border border-line bg-component p-4 shadow-sm sm:flex">
               <Collapsible className="w-full space-y-4">
@@ -173,11 +187,18 @@ export const Experience: FC = () => {
                             />
                           }
                           className="w-fit"
+                          aria-expanded={open}
+                          aria-controls={`projects-${experience.id}`}
                         >
                           {open ? "Hide " : ""}Projects
                         </Button>
                       </Collapsible.Trigger>
-                      <Collapsible.Content className="mt-4 w-full space-y-4">
+                      <Collapsible.Content
+                        className="mt-4 w-full space-y-4"
+                        id={`projects-${experience.id}`}
+                        role="region"
+                        aria-label={`${experience.company} projects`}
+                      >
                         {experience.projects.map((project) => (
                           <div
                             key={project.id}
@@ -195,6 +216,7 @@ export const Experience: FC = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="mt-2 inline-flex items-center text-sm text-primary hover:underline"
+                                aria-label={`View ${project.name} project`}
                               >
                                 View Project{" "}
                                 <LuExternalLink className="ml-2 h-4 w-4" />

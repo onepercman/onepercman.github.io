@@ -77,10 +77,17 @@ export const Packages: FC = () => {
   if (!data?.length) return
 
   return (
-    <section className="bg-component px-6 py-12 sm:px-8">
+    <section
+      className="bg-component px-6 py-12 sm:px-8"
+      aria-label="NPM packages"
+    >
       <div className="mx-auto max-w-xl space-y-6">
-        <div className="text-2xl font-semibold">My packages</div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <h2 className="text-2xl font-semibold">My packages</h2>
+        <div
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2"
+          role="list"
+          aria-label="Package list"
+        >
           {data.map((item) => (
             <a
               key={item.package.name}
@@ -88,9 +95,11 @@ export const Packages: FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col gap-2 rounded border-2 border-line p-4 transition-colors hover:border-primary"
+              role="listitem"
+              aria-label={`${item.package.name} package`}
             >
               <div className="inline-flex items-center gap-2">
-                <FaNpm className="text-3xl text-red-500" />
+                <FaNpm className="text-3xl text-red-500" aria-hidden="true" />
                 <span className="text-lg font-medium transition-colors group-hover:text-primary">
                   {item.package.name}{" "}
                   <span className="text-xs text-secondary">
@@ -102,7 +111,7 @@ export const Packages: FC = () => {
                 {item.package.description}
               </div>
               <div className="inline-flex items-center gap-1 text-sm">
-                <LuDownload />
+                <LuDownload aria-hidden="true" />
                 <span>{item.downloads.monthly}</span>
                 <span className="text-secondary"> - monthly</span>
               </div>

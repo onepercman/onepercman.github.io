@@ -13,7 +13,11 @@ import { contact } from "./data"
 
 export const Resume: FC = () => {
   return (
-    <section id="resume" className="space-y-14 bg-component px-6 py-12 sm:px-8">
+    <section
+      id="resume"
+      className="space-y-14 bg-component px-6 py-12 sm:px-8"
+      aria-label="Resume section"
+    >
       <div className="flex flex-col items-start gap-4">
         <div className="font-medium italic">Nice to meet you!</div>
         <div className="text-3xl font-semibold sm:text-5xl">WELCOME TO...</div>
@@ -21,7 +25,12 @@ export const Resume: FC = () => {
 
       <div className="flex flex-col gap-6 xl:flex-row">
         <div className="flex w-full flex-none flex-col items-center gap-4 xl:max-w-lg">
-          <img src="/myself-2.png" className="h-80 w-80 rounded-full" />
+          <img
+            src="/myself-2.png"
+            className="h-80 w-80 rounded-full"
+            alt="Trung Tran Duy - Frontend Engineer"
+            loading="lazy"
+          />
           <div className="bg-gradient-to-r from-primary to-accent bg-clip-text text-4xl font-semibold uppercase text-transparent">
             Trung Tran Duy
           </div>
@@ -33,12 +42,12 @@ export const Resume: FC = () => {
             <span className="font-bold">VN</span>
           </div>
           <div className="inline-flex items-center gap-4">
-            <a href="/resume.pdf" target="_blank">
+            <a href="/resume.pdf" target="_blank" aria-label="Download resume">
               <Button size="lg" color="primary" rightIcon={<LuDownload />}>
                 Download Resume
               </Button>
             </a>
-            <a href="#experience">
+            <a href="#experience" aria-label="View experience">
               <Button
                 size="lg"
                 variant="outlined"
@@ -61,11 +70,17 @@ export const Resume: FC = () => {
             cross-browser compatibility. Adept at collaborating with
             cross-functional teams to deliver high-quality, scalable solutions.
           </p>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2"
+            role="list"
+            aria-label="Contact information"
+          >
             <a
               target="_blank"
               href={`tel:${contact.phone}`}
               className="inline-flex items-center gap-2 whitespace-nowrap"
+              role="listitem"
+              aria-label="Phone number"
             >
               <LuSmartphone />
               <span>{contact.phone}</span>
@@ -74,6 +89,8 @@ export const Resume: FC = () => {
               target="_blank"
               href={`mailto:${contact.email}`}
               className="inline-flex items-center gap-2 whitespace-nowrap"
+              role="listitem"
+              aria-label="Email address"
             >
               <LuMail />
               <span>{contact.email}</span>
@@ -82,6 +99,8 @@ export const Resume: FC = () => {
               target="_blank"
               href={contact.github}
               className="inline-flex items-center gap-2 whitespace-nowrap"
+              role="listitem"
+              aria-label="GitHub profile"
             >
               <LuGithub />
               <span>@onepercman</span>
@@ -90,6 +109,8 @@ export const Resume: FC = () => {
               target="_blank"
               href={contact.linkedin}
               className="inline-flex items-center gap-2 whitespace-nowrap"
+              role="listitem"
+              aria-label="LinkedIn profile"
             >
               <LuLinkedin />
               <span>@onepercman</span>
@@ -136,7 +157,11 @@ export const Resume: FC = () => {
             </div>
           </div>
 
-          <div className="inline-flex gap-4 rounded-2xl bg-default p-6">
+          <div
+            className="inline-flex gap-4 rounded-2xl bg-default p-6"
+            role="complementary"
+            aria-label="Quote"
+          >
             <LuQuote size={80} className="flex-none text-secondary" />
             <div className="grow text-2xl font-medium">
               "Crafting seamless user experiences with code that speaks

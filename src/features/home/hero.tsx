@@ -22,7 +22,10 @@ export const Hero: FC = () => {
   const scaleR = useTransform(scrollYProgress, [0, 1], ["100%", "0%"])
 
   return (
-    <motion.section className="relative grid min-h-screen grid-cols-1 items-center gap-4 overflow-hidden p-6 sm:grid-cols-2 sm:p-16">
+    <motion.section
+      className="relative grid min-h-screen grid-cols-1 items-center gap-4 overflow-hidden p-6 sm:grid-cols-2 sm:p-16"
+      aria-label="Hero section"
+    >
       <motion.div
         initial={{ translateX: "-100%" }}
         animate={{ translateX: "0" }}
@@ -66,7 +69,11 @@ export const Hero: FC = () => {
           </span>
           based in <span className="font-bold">VN</span>
         </motion.div>
-        <motion.a href="#resume" style={{ opacity: opacityDown }}>
+        <motion.a
+          href="#resume"
+          style={{ opacity: opacityDown }}
+          aria-label="Go to resume section"
+        >
           <Button size="lg" color="primary" rightIcon={<LuExternalLink />}>
             Work with me
           </Button>
@@ -74,6 +81,8 @@ export const Hero: FC = () => {
         <motion.div
           style={{ opacity: opacityDown }}
           className="flex flex-col items-start gap-3"
+          role="list"
+          aria-label="Contact information"
         >
           <motion.a
             initial={{ translateX: "10rem", opacity: 0 }}
@@ -82,6 +91,8 @@ export const Hero: FC = () => {
             target="_blank"
             href={`tel:${contact.phone}`}
             className="inline-flex items-center gap-2 whitespace-nowrap"
+            role="listitem"
+            aria-label="Phone number"
           >
             <LuSmartphone />
             <span>{contact.phone}</span>
@@ -93,6 +104,8 @@ export const Hero: FC = () => {
             target="_blank"
             href={`mailto:${contact.email}`}
             className="inline-flex items-center gap-2 whitespace-nowrap"
+            role="listitem"
+            aria-label="Email address"
           >
             <LuMail />
             <span>{contact.email}</span>
@@ -104,6 +117,8 @@ export const Hero: FC = () => {
             target="_blank"
             href={contact.github}
             className="inline-flex items-center gap-2 whitespace-nowrap"
+            role="listitem"
+            aria-label="GitHub profile"
           >
             <LuGithub />
             <span>@onepercman</span>
@@ -115,6 +130,8 @@ export const Hero: FC = () => {
             target="_blank"
             href={contact.linkedin}
             className="inline-flex items-center gap-2 whitespace-nowrap"
+            role="listitem"
+            aria-label="LinkedIn profile"
           >
             <LuLinkedin />
             <span>@onepercman</span>
@@ -132,7 +149,12 @@ export const Hero: FC = () => {
         style={{ translateY: translateR, scale: scaleR }}
         className="absolute bottom-0 right-0 -z-10 aspect-square w-full overflow-hidden rounded-t-full sm:relative sm:rounded-full"
       >
-        <img src="/myself.jpeg" className="h-full w-full rounded-t-full" />
+        <img
+          src="/myself.jpeg"
+          className="h-full w-full rounded-t-full"
+          alt="Trung Tran Duy - Frontend Engineer"
+          loading="eager"
+        />
       </motion.div>
     </motion.section>
   )
