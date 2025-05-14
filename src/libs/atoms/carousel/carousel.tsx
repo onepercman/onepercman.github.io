@@ -14,7 +14,6 @@ const Item = withSlot(Carousel.Item)
 const ItemGroup = withSlot(Carousel.ItemGroup)
 const NextTrigger = withSlot(Carousel.NextTrigger)
 const PrevTrigger = withSlot(Carousel.PrevTrigger)
-const Viewport = withSlot(Carousel.Viewport)
 
 export const Component = createComponentTree(Root, {
   Root,
@@ -27,7 +26,6 @@ export const Component = createComponentTree(Root, {
   ItemGroup,
   NextTrigger,
   PrevTrigger,
-  Viewport,
 })
 
 Component.displayName = "Carousel"

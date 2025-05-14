@@ -12,13 +12,16 @@ const config: Config = {
     extend: {
       fontFamily: { sans: ["Rubik", ...defaultTheme.fontFamily.sans] },
       keyframes: {
-        collapse: { from: { height: "0px" }, to: { height: "var(--height)" } },
+        collapsible: {
+          from: { height: "0px" },
+          to: { height: "var(--height)" },
+        },
       },
       borderRadius: {
         DEFAULT: "6px",
       },
       animation: {
-        collapse: "collapse",
+        collapsible: "collapsible",
       },
       boxShadow: {
         button:

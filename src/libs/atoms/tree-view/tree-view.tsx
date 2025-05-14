@@ -14,7 +14,6 @@ const BranchIndicator = withSlot(TreeView.BranchIndicator)
 const BranchText = withSlot(TreeView.BranchText)
 const BranchTrigger = withSlot(TreeView.BranchTrigger)
 const Item = withSlot(TreeView.Item)
-const ItemContext = withSlot(TreeView.ItemContext)
 const ItemIndicator = withSlot(TreeView.ItemIndicator)
 const ItemText = withSlot(TreeView.ItemText)
 const Label = withSlot(TreeView.Label)
@@ -31,7 +30,6 @@ export const Component = createComponentTree(Root, {
   BranchText,
   BranchTrigger,
   Item,
-  ItemContext,
   ItemIndicator,
   ItemText,
   Label,
