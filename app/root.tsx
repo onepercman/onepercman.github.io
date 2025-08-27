@@ -24,6 +24,24 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap",
   },
+
+  // Favicon and icons
+  { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+  {
+    rel: "icon",
+    href: "/images/icon-192x192.png",
+    type: "image/png",
+    sizes: "192x192",
+  },
+  { rel: "apple-touch-icon", href: "/images/icon-192x192.png" },
+
+  // Manifest for PWA
+  { rel: "manifest", href: "/manifest.json" },
+
+  // DNS prefetch for external services
+  { rel: "dns-prefetch", href: "https://formspree.io" },
+  { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
+  { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {

@@ -39,7 +39,10 @@ const contactFormSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactFormSchema>
 
-export function ContactSection({ profile, formspreeFormId }: ContactSectionProps) {
+export function ContactSection({
+  profile,
+  formspreeFormId,
+}: ContactSectionProps) {
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle")

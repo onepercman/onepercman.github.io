@@ -1,8 +1,6 @@
-import React from "react"
+import { type FC, type SVGAttributes } from "react"
 
-export const Spinner: React.FC<React.SVGAttributes<SVGElement>> = function ({
-  ...props
-}) {
+export const Spinner: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
   return (
     <svg
       width="1em"

@@ -11,25 +11,22 @@ export const submitContactForm = async (
   formspreeFormId: string
 ): Promise<{ success: boolean; message: string }> => {
   try {
-    const response = await fetch(
-      `https://formspree.io/f/${formspreeFormId}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          subject: data.subject,
-          message: data.message,
-          // Add additional metadata
-          _subject: data.subject,
-          _replyto: data.email,
-        }),
-      }
-    )
+    const response = await fetch(`https://formspree.io/f/${formspreeFormId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+        // Add additional metadata
+        _subject: data.subject,
+        _replyto: data.email,
+      }),
+    })
 
     if (response.ok) {
       return {

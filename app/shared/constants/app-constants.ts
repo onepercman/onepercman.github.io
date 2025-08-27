@@ -1,8 +1,8 @@
 // App configuration
 export const APP_CONFIG = {
-  name: "React Router Starter",
+  name: "onepercman Portfolio",
   version: "1.0.0",
-  description: "Modern React Router v7 application with modular architecture",
+  description: "Frontend Engineer & Web3 Enthusiast Portfolio",
 } as const
 
 // API configuration

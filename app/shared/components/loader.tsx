@@ -1,9 +1,9 @@
 import { Slot } from "@radix-ui/react-slot"
-import * as React from "react"
+import { type ComponentProps } from "react"
 import { cn } from "~/shared/utils"
 import { Spinner } from "./ui/spinner"
 
-export interface LoaderProps extends React.ComponentProps<"div"> {
+export interface LoaderProps extends ComponentProps<"div"> {
   asChild?: boolean
 }
 

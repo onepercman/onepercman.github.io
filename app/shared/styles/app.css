@@ -182,11 +182,8 @@
 
 /* Apple-inspired enhancements */
 @layer components {
-  /* Smooth backdrop blur effects */
-  .backdrop-blur-apple {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-  }
+  /* Smooth backdrop blur effects - removed since it's causing build issues */
+  /* Use inline backdrop-filter instead */
 
   /* Apple-like button styles */
   .btn-apple {
@@ -203,7 +200,9 @@
 
   /* Glassmorphism cards */
   .glass-card {
-    @apply backdrop-blur-apple bg-card/80 border border-border/50;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    @apply bg-card/80 border border-border/50;
     box-shadow:
       0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06),
