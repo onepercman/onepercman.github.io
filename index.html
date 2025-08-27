@@ -1,126 +1,17 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>
-      onepercman - Web Developer & ReactJS Specialist | onepercman.com
-    </title>
-    <meta
-      name="description"
-      content="onepercman - Web Developer & ReactJS Specialist. Explore my portfolio, projects, and skills in web development. Visit onepercman.com for more."
-    />
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="modulepreload" href="/assets/manifest-7b2cbcaa.js"/><link rel="modulepreload" href="/assets/entry.client-DfQFXBse.js"/><link rel="modulepreload" href="/assets/index-DoPwb1ER.js"/><link rel="modulepreload" href="/assets/index-DtBCLCrG.js"/><link rel="modulepreload" href="/assets/chunk-EF7DTUVF-rwu_jJvK.js"/><link rel="modulepreload" href="/assets/root-BJKD7fWv.js"/><link rel="modulepreload" href="/assets/spinner-BlHNCLdD.js"/><link rel="modulepreload" href="/assets/index-DXpE30ZV.js"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="icon" href="/favicon.ico" sizes="32x32"/><link rel="icon" href="/images/icon-192x192.png" type="image/png" sizes="192x192"/><link rel="apple-touch-icon" href="/images/icon-192x192.png"/><link rel="manifest" href="/manifest.json"/><link rel="dns-prefetch" href="https://formspree.io"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="dns-prefetch" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="/assets/root-Cj0XIp1T.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap"/><script>
+              (function() {
+                function getThemePreference() {
+                  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                    return localStorage.getItem('theme')
+                  }
+                  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+                }
+                const theme = getThemePreference()
+                document.documentElement.classList.toggle('dark', theme === 'dark')
+              })()
+            </script></head><body><div class="flex min-h-56"><div class="m-auto flex flex-col items-center gap-4 p-4"><svg width="1em" height="1em" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" xmlns="http://www.w3.org/2000/svg"><g><circle cx="12" cy="12" r="9.5" fill="none" stroke-linecap="round"><animate attributeName="stroke-dasharray" dur="1.5s" calcMode="spline" values="0 150;42 150;42 150;42 150" keyTimes="0;0.475;0.95;1" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" repeatCount="indefinite"></animate><animate attributeName="stroke-dashoffset" dur="1.5s" calcMode="spline" values="0;-16;-59;-59" keyTimes="0;0.475;0.95;1" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" repeatCount="indefinite"></animate></circle><animateTransform attributeName="transform" type="rotate" dur="2s" values="0 12 12;360 12 12" repeatCount="indefinite"></animateTransform></g></svg></div></div><script>window.__reactRouterContext = {"basename":"/","future":{"unstable_middleware":false,"unstable_optimizeDeps":false,"unstable_splitRouteModules":false,"unstable_subResourceIntegrity":false,"unstable_viteEnvironmentApi":false},"routeDiscovery":{"mode":"initial"},"ssr":false,"isSpaMode":true};window.__reactRouterContext.stream = new ReadableStream({start(controller){window.__reactRouterContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());</script><script type="module" async="">import "/assets/manifest-7b2cbcaa.js";
+import * as route0 from "/assets/root-BJKD7fWv.js";
+  
+  window.__reactRouterRouteModules = {"root":route0};
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Performance Optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-
-    <!-- Security Headers -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' https: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https:;"
-    />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-
-    <!-- Mobile Optimization -->
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="format-detection" content="telephone=no" />
-
-    <!-- SEO Meta Tags -->
-    <meta name="robots" content="index, follow" />
-    <meta
-      name="keywords"
-      content="onepercman, web developer, ReactJS, frontend development, JavaScript, TypeScript, web development portfolio"
-    />
-
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta
-      property="og:title"
-      content="onepercman - Web Developer & ReactJS Specialist | onepercman.com"
-    />
-    <meta
-      property="og:description"
-      content="onepercman - Web Developer & ReactJS Specialist. Explore my portfolio, projects, and skills in web development. Visit onepercman.com for more."
-    />
-    <meta property="og:url" content="https://onepercman.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://onepercman.com/thumbnail.png" />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="onepercman - Web Developer & ReactJS Specialist | onepercman.com"
-    />
-    <meta
-      name="twitter:description"
-      content="onepercman - Web Developer & ReactJS Specialist. Explore my portfolio, projects, and skills in web development. Visit onepercman.com for more."
-    />
-    <meta name="twitter:image" content="https://onepercman.com/thumbnail.png" />
-
-    <link rel="canonical" href="https://onepercman.com" />
-
-    <!-- Schema.org markup for Google -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Trung Tran Duy",
-        "alternateName": "onepercman",
-        "url": "https://onepercman.com",
-        "image": "https://onepercman.com/myself-2.png",
-        "sameAs": [
-          "https://github.com/onepercman",
-          "https://linkedin.com/in/onepercman",
-          "https://t.me/onepercman"
-        ],
-        "jobTitle": "Frontend Engineer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Freelancer"
-        },
-        "description": "Skilled ReactJS Frontend Developer with 4 years of experience in building dynamic and responsive web applications.",
-        "knowsAbout": [
-          "ReactJS",
-          "JavaScript",
-          "TypeScript",
-          "Web Development",
-          "Frontend Development"
-        ],
-        "telephone": "+84 918 048 534",
-        "email": "onepercman@gmail.com"
-      }
-    </script>
-
-    <!-- Additional SEO Meta Tags -->
-    <meta name="author" content="Trung Tran Duy" />
-    <meta name="geo.region" content="VN" />
-    <meta name="geo.placename" content="Ho Chi Minh City" />
-    <meta name="geo.position" content="10.762622;106.660172" />
-    <meta name="ICBM" content="10.762622, 106.660172" />
-
-    <!-- Additional Performance Tags -->
-    <link rel="preload" as="image" href="/thumbnail.png" />
-    <link rel="preload" as="image" href="/myself-2.png" />
-
-    <!-- Additional Security Headers -->
-    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <script type="module" crossorigin src="/assets/index-Du-7CS38.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-ov7IMyXf.css">
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-  </head>
-
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+import("/assets/entry.client-DfQFXBse.js");</script><!--$--><script>window.__reactRouterContext.streamController.enqueue("[{\"_1\":2,\"_3\":-5,\"_4\":-5},\"loaderData\",{},\"actionData\",\"errors\"]\n");</script><!--$--><script>window.__reactRouterContext.streamController.close();</script><!--/$--><!--/$--></body></html>
