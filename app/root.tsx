@@ -10,7 +10,6 @@ import {
 import { queryClient } from "~/shared/config/react-query-config"
 import "~/shared/styles/app.css"
 import type { Route } from "./+types/root"
-import { Loader } from "./shared/components/loader"
 import { ThemeProvider } from "./shared/components/theme-provider"
 
 export const links: Route.LinksFunction = () => [
@@ -88,9 +87,6 @@ export default function App() {
   )
 }
 
-export function HydrateFallback() {
-  return <Loader />
-}
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!"
