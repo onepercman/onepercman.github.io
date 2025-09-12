@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
 } from "react-router"
 import { queryClient } from "~/shared/config/react-query-config"
-import { META_DATA, SOCIAL_URLS } from "~/shared/constants/portfolio-constants"
+import { META_DATA, SOCIAL_URLS } from "~/modules/portfolio/portfolio-data"
 import "~/shared/styles/app.css"
 import type { Route } from "./+types/root"
 import { ThemeProvider } from "./shared/components/theme-provider"
