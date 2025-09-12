@@ -105,7 +105,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap",
   },
 
   // Favicon and icons
