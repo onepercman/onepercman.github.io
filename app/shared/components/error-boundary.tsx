@@ -24,10 +24,10 @@ function DefaultErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
       <Card className="max-w-lg w-full">
         <div className="text-center space-y-4">
           <div className="text-4xl">😕</div>
-          <h2 className="text-xl font-semibold text-foreground">
+          <h2 className="text-xl font-semibold text-fg">
             Something went wrong
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-fg">
             We're sorry, but something unexpected happened. Please try again.
           </p>
 
@@ -44,10 +44,10 @@ function DefaultErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
           )}
 
           <div className="flex gap-3 justify-center">
-            <Button color="primary" onClick={resetErrorBoundary}>
+            <Button intent="primary" onClick={resetErrorBoundary}>
               Try Again
             </Button>
-            <Button variant="outline" onClick={() => window.location.reload()}>
+            <Button intent="outline" onClick={() => window.location.reload()}>
               Reload Page
             </Button>
           </div>
@@ -117,10 +117,10 @@ export function ModuleErrorBoundary({
     (({ resetErrorBoundary }: FallbackProps) => (
       <div className="p-4 text-center">
         <div className="text-4xl mb-2">⚠️</div>
-        <p className="text-muted-foreground mb-4">
+        <p className="text-muted-fg mb-4">
           Error in {moduleName} module. Please try refreshing.
         </p>
-        <Button color="primary" onClick={resetErrorBoundary}>
+        <Button intent="primary" onClick={resetErrorBoundary}>
           Retry
         </Button>
       </div>
@@ -140,15 +140,15 @@ export function RouteErrorBoundary({ error }: { error: unknown }) {
       <div className="min-h-[400px] flex items-center justify-center p-4">
         <Card className="max-w-lg w-full text-center space-y-4">
           <div className="text-4xl">{error.status === 404 ? "🔍" : "⚠️"}</div>
-          <h2 className="text-xl font-semibold text-foreground">
+          <h2 className="text-xl font-semibold text-fg">
             {error.status === 404 ? "Page Not Found" : `Error ${error.status}`}
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-fg">
             {error.status === 404
               ? "The page you're looking for doesn't exist."
               : error.statusText || "Something went wrong."}
           </p>
-          <Button color="primary" onClick={() => window.history.back()}>
+          <Button intent="primary" onClick={() => window.history.back()}>
             Go Back
           </Button>
         </Card>

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import { cn } from "~/shared/utils"
+import { cx } from "../lib/primitive"
 
 interface AnimatedTitleProps {
   titles: string[]
@@ -28,7 +28,7 @@ export function AnimatedTitle({
   const currentTitle = titles[currentIndex] || titles[0]
 
   return (
-    <div className={cn("relative inline-block", className)}>
+    <div className={cx("relative inline-block", className)}>
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -82,9 +82,9 @@ export function AnimatedTitle({
                   delay: index * 0.03,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={cn(
+                className={cx(
                   "inline-block",
-                  char === " " ? "w-2" : "",
+                  char === " " && "w-2",
                   "hover:text-primary transition-colors duration-300"
                 )}
                 style={{
@@ -122,11 +122,11 @@ export function AnimatedTitle({
             <motion.button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={cn(
+              className={cx(
                 "w-2 h-2 rounded-full transition-all duration-300",
                 index === currentIndex
                   ? "bg-primary scale-125"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                  : "bg-muted-fg/30 hover:bg-muted-fg/60"
               )}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}

@@ -3,7 +3,7 @@ import { ArrowUp } from "lucide-react"
 import { useRef, useState } from "react"
 import { ThemeToggle } from "../components/theme-toggle"
 import { Button } from "../components/ui"
-import { cn } from "../utils"
+import { cx } from "../lib/primitive"
 
 interface PortfolioLayoutProps {
   children: React.ReactNode
@@ -47,9 +47,9 @@ export function PortfolioLayout({ children }: PortfolioLayoutProps) {
           y: isHeaderVisible ? 0 : -100,
         }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className={cn(
+        className={cx(
           "fixed top-6 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none",
-          isHeaderVisible && "pointer-events-auto"
+          isHeaderVisible ? "pointer-events-auto" : ""
         )}
       >
         <div className="glass-card rounded-full px-8 py-4 shadow-2xl">
@@ -58,7 +58,7 @@ export function PortfolioLayout({ children }: PortfolioLayoutProps) {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-semibold text-muted-foreground hover:text-foreground animate-apple focus-apple relative overflow-hidden group"
+                className="text-sm font-semibold text-muted-fg hover:text-fg animate-apple focus-apple relative overflow-hidden group"
               >
                 <span className="relative z-10">{item.label}</span>
                 <div className="absolute inset-0 bg-accent rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out" />
@@ -81,15 +81,15 @@ export function PortfolioLayout({ children }: PortfolioLayoutProps) {
           scale: showScrollTop ? 1 : 0.8,
         }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className={cn(
+        className={cx(
           "fixed bottom-8 right-8 z-40 pointer-events-none",
-          showScrollTop && "pointer-events-auto"
+          showScrollTop ? "pointer-events-auto" : ""
         )}
       >
         <Button
           onClick={scrollToTop}
-          size="icon"
-          className="w-14 h-14 rounded-full btn-apple text-primary-foreground shadow-2xl hover:shadow-3xl animate-apple focus-apple group"
+          size="sq-lg"
+          className="w-14 h-14 rounded-full btn-apple text-primary-fg shadow-2xl hover:shadow-3xl animate-apple focus-apple group"
         >
           <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-300" />
         </Button>

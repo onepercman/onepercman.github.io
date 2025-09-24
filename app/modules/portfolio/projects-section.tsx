@@ -54,7 +54,7 @@ export function ProjectsSection({
   }
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-muted/30">
+    <section className="py-24 bg-gradient-to-b from-bg to-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -64,10 +64,10 @@ export function ProjectsSection({
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-fg mb-4">
             Featured Projects
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-fg max-w-3xl mx-auto">
             A showcase of my recent work, featuring modern web applications
             built with cutting-edge technologies
           </p>
@@ -83,51 +83,51 @@ export function ProjectsSection({
         >
           {featuredProjects.map((project) => (
             <motion.div key={project.id} variants={cardVariants}>
-              <Card className="group h-full border-2 border-border/50 hover:border-primary/50 transition-all duration-500 bg-card hover:shadow-2xl hover:shadow-primary/10">
+              <Card className="group h-full border-2 border-border/50 hover:border-primary/50 transition-all duration-500 bg-bg hover:shadow-2xl hover:shadow-primary/10">
                 {/* Project Content */}
                 <div className="p-6">
                   {/* Header with title and links */}
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors flex-1">
+                    <h3 className="text-xl font-semibold text-fg group-hover:text-primary transition-colors flex-1">
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-2 ml-4">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-8 w-8 p-0 hover:bg-muted"
-                        asChild
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View code"
+                        className="inline-block"
                       >
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="View code"
+                        <Button
+                          size="sq-sm"
+                          intent="plain"
+                          className="h-8 w-8 p-0 hover:bg-muted"
                         >
                           <Github className="w-4 h-4" />
-                        </a>
-                      </Button>
+                        </Button>
+                      </a>
                       {project.links.demo !== "#" && (
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="h-8 w-8 p-0 hover:bg-muted"
-                          asChild
+                        <a
+                          href={project.links.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View demo"
+                          className="inline-block"
                         >
-                          <a
-                            href={project.links.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="View demo"
+                          <Button
+                            size="sq-sm"
+                            intent="plain"
+                            className="h-8 w-8 p-0 hover:bg-muted"
                           >
                             <ExternalLink className="w-4 h-4" />
-                          </a>
-                        </Button>
+                          </Button>
+                        </a>
                       )}
                     </div>
                   </div>
 
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                  <p className="text-muted-fg mb-4 leading-relaxed">
                     {project.description}
                   </p>
 
@@ -136,7 +136,7 @@ export function ProjectsSection({
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full border border-border/50"
+                        className="px-3 py-1 text-xs font-medium bg-muted text-muted-fg rounded-full border border-border/50"
                       >
                         {tech}
                       </span>
@@ -158,10 +158,10 @@ export function ProjectsSection({
                               >
                                 <Icon className="w-4 h-4 text-primary" />
                                 <div>
-                                  <p className="text-sm font-semibold text-foreground">
+                                  <p className="text-sm font-semibold text-fg">
                                     {value}
                                   </p>
-                                  <p className="text-xs text-muted-foreground capitalize">
+                                  <p className="text-xs text-muted-fg capitalize">
                                     {key}
                                   </p>
                                 </div>
@@ -185,17 +185,13 @@ export function ProjectsSection({
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Button
-            variant="outline"
-            size="lg"
-            className="group border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary px-8 py-4"
-            asChild
+          <a
+            href="https://github.com/onepercman"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
           >
-            <a
-              href="https://github.com/onepercman"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Button intent="outline" size="lg" className="group">
               <span className="flex items-center gap-2 text-lg">
                 View All Projects
                 <motion.div
@@ -205,8 +201,8 @@ export function ProjectsSection({
                   <ExternalLink className="w-5 h-5" />
                 </motion.div>
               </span>
-            </a>
-          </Button>
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { create } from "zustand"
-import type { PortfolioData } from "./portfolio-types"
 import { portfolioData } from "./portfolio-data"
+import type { PortfolioData } from "./portfolio-types"
 
 interface PortfolioStore {
   data: PortfolioData

@@ -12,16 +12,15 @@ export function ThemeToggle() {
   return (
     <Button
       onClick={toggleTheme}
-      variant="ghost"
-      size="icon"
+      intent="plain"
+      size="sq-md"
       className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent/50 hover:bg-accent animate-apple focus-apple group border-0"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       <div className="relative w-5 h-5">
         {/* Sun Icon */}
         <svg
-          className={`absolute inset-0 w-5 h-5 text-foreground transition-all duration-500 ease-out transform ${
+          className={`absolute inset-0 w-5 h-5 text-fg transition-all duration-500 ease-out transform ${
             isDark
               ? "rotate-90 scale-0 opacity-0"
               : "rotate-0 scale-100 opacity-100"
@@ -40,7 +39,7 @@ export function ThemeToggle() {
 
         {/* Moon Icon */}
         <svg
-          className={`absolute inset-0 w-5 h-5 text-foreground transition-all duration-500 ease-out transform ${
+          className={`absolute inset-0 w-5 h-5 text-fg transition-all duration-500 ease-out transform ${
             isDark
               ? "rotate-0 scale-100 opacity-100"
               : "-rotate-90 scale-0 opacity-0"
