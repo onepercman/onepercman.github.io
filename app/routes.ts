@@ -1,8 +1,5 @@
-import { type RouteConfig, index, layout } from "@react-router/dev/routes"
+import { type RouteConfig } from "@react-router/dev/routes"
 
-export default [
-  layout("shared/layouts/portfolio-layout.tsx", [
-    // Portfolio as main index page
-    index("routes/portfolio/index.tsx"),
-  ]),
-] satisfies RouteConfig
+import { flatRoutes } from "@react-router/fs-routes"
+
+export default flatRoutes() satisfies RouteConfig
