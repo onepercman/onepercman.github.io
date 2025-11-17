@@ -3,9 +3,7 @@ import { animate, stagger } from "motion"
 import { useEffect, useRef, useState } from "react"
 import { AnimatedTitle } from "~/shared/components/animated-title"
 import { Button } from "~/shared/components/ui"
-import { useMouseParallax } from "~/shared/hooks/use-mouse-parallax"
 import { useParallax } from "~/shared/hooks/use-parallax"
-import { useScrollProgress } from "~/shared/hooks/use-scroll-progress"
 import type { Profile } from "./portfolio-types"
 
 interface HeroSectionProps {
@@ -17,15 +15,8 @@ export function HeroSection({ profile }: HeroSectionProps) {
 	const scrollIndicatorRef = useRef<HTMLDivElement>(null)
 	const avatarRef = useRef<HTMLDivElement>(null)
 	const bgLayersRef = useRef<HTMLDivElement>(null)
-	const bgOffset = useParallax({ speed: 0.8 })
-	const bgOffset2 = useParallax({ speed: 0.6, reverse: true })
 	const contentOffset = useParallax({ speed: 0.3 })
-	const mousePosition = useMouseParallax({ strength: 15 })
-	const mousePosition2 = useMouseParallax({ strength: 25, invert: true })
-	const scrollProgress = useScrollProgress()
 	const [isLoaded, setIsLoaded] = useState(false)
-
-	const heroOpacity = Math.max(0, 1 - scrollProgress * 3)
 
 	useEffect(() => {
 		if (!containerRef.current || !avatarRef.current) return
@@ -121,65 +112,11 @@ export function HeroSection({ profile }: HeroSectionProps) {
 
 	return (
 		<section className="relative flex min-h-screen items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24">
-			{/* Background gradient */}
-			<div className="absolute inset-0 bg-bg" />
-
 			{/* Animated background elements - Fade on scroll */}
 			<div
 				ref={bgLayersRef}
 				className="absolute inset-0 transition-opacity duration-300"
-				style={{ opacity: heroOpacity }}
-			>
-				{/* Mesh gradient background - Higher quality */}
-				<div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,_var(--tw-gradient-stops))] from-primary/8 via-30% via-primary/3 to-60% to-bg" />
-
-				{/* Floating orbs with parallax - Smoother gradients */}
-				<div
-					className="absolute inset-0 transition-transform duration-300 ease-out will-change-transform"
-					style={{
-						transform: `translate(${mousePosition.x}px, ${bgOffset + mousePosition.y}px)`,
-					}}
-				>
-					<div
-						className="absolute top-[20%] left-[15%] h-[500px] w-[500px] rounded-full opacity-80"
-						style={{
-							background:
-								"radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.08) 40%, transparent 70%)",
-							filter: "blur(60px)",
-						}}
-					/>
-				</div>
-				<div
-					className="absolute inset-0 transition-transform duration-500 ease-out will-change-transform"
-					style={{
-						transform: `translate(${mousePosition2.x}px, ${bgOffset2 + mousePosition2.y}px)`,
-					}}
-				>
-					<div
-						className="absolute right-[15%] bottom-[20%] h-[600px] w-[600px] rounded-full opacity-70"
-						style={{
-							background:
-								"radial-gradient(circle, hsl(var(--chart-1) / 0.12) 0%, hsl(var(--chart-1) / 0.06) 40%, transparent 70%)",
-							filter: "blur(80px)",
-						}}
-					/>
-				</div>
-				<div
-					className="absolute inset-0 transition-transform duration-700 ease-out will-change-transform"
-					style={{
-						transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
-					}}
-				>
-					<div
-						className="-translate-x-1/2 -translate-y-1/2 absolute top-[50%] left-[50%] h-[700px] w-[700px] rounded-full opacity-60"
-						style={{
-							background:
-								"radial-gradient(circle, hsl(var(--accent) / 0.08) 0%, hsl(var(--accent) / 0.04) 50%, transparent 70%)",
-							filter: "blur(100px)",
-						}}
-					/>
-				</div>
-			</div>
+			></div>
 
 			{/* Bottom fade gradient to mask parallax cutoff */}
 			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-bg to-transparent" />
