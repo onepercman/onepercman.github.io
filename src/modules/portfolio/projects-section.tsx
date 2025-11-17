@@ -1,6 +1,8 @@
-import { motion } from "framer-motion"
 import { ExternalLink, Github, TrendingUp, Users, Zap } from "lucide-react"
+import { animate, stagger } from "motion"
+import { useEffect, useRef } from "react"
 import { Button, Card } from "~/shared/components/ui"
+import { useScrollSection } from "~/shared/hooks/use-scroll-section"
 import type { Project } from "./portfolio-types"
 
 interface ProjectsSectionProps {
@@ -12,30 +14,48 @@ export function ProjectsSection({
 	projects,
 	featuredCount = 3,
 }: ProjectsSectionProps) {
+	const sectionRef = useRef<HTMLElement | null>(null)
+	const headerRef = useRef<HTMLDivElement>(null)
+	const gridRef = useRef<HTMLDivElement>(null)
+	const buttonRef = useRef<HTMLDivElement>(null)
+
+	const { isInView } = useScrollSection(sectionRef, { threshold: 0.1 })
+	const hasAnimated = useRef(false)
+
 	const featuredProjects = projects
 		.filter((project) => project.featured)
 		.slice(0, featuredCount)
 
-	const containerVariants = {
-		hidden: { opacity: 0 },
-		visible: {
-			opacity: 1,
-			transition: {
-				staggerChildren: 0.2,
-			},
-		},
-	}
+	useEffect(() => {
+		if (!isInView || hasAnimated.current) return
+		if (!headerRef.current || !gridRef.current || !buttonRef.current) return
 
-	const cardVariants = {
-		hidden: { opacity: 0, y: 50 },
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				duration: 0.8,
-			},
-		},
-	}
+		hasAnimated.current = true
+
+		animate(
+			headerRef.current,
+			{ opacity: [0, 1], y: [40, 0] },
+			{ duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+		)
+
+		setTimeout(() => {
+			if (!gridRef.current) return
+			animate(
+				gridRef.current.querySelectorAll("[data-card]"),
+				{ opacity: [0, 1], y: [60, 0], scale: [0.95, 1] },
+				{ duration: 0.6, delay: stagger(0.1), ease: [0.22, 1, 0.36, 1] },
+			)
+		}, 400)
+
+		setTimeout(() => {
+			if (!buttonRef.current) return
+			animate(
+				buttonRef.current,
+				{ opacity: [0, 1], y: [30, 0] },
+				{ duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+			)
+		}, 600)
+	}, [isInView])
 
 	const getMetricIcon = (key: string) => {
 		switch (key) {
@@ -53,17 +73,35 @@ export function ProjectsSection({
 		}
 	}
 
+	const handleCardHover = (e: React.MouseEvent<HTMLDivElement>) => {
+		const card = e.currentTarget
+		animate(card, { y: -8 }, { duration: 0.3, ease: [0.22, 1, 0.36, 1] })
+	}
+
+	const handleCardLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+		const card = e.currentTarget
+		animate(card, { y: 0 }, { duration: 0.3, ease: [0.22, 1, 0.36, 1] })
+	}
+
+	const handleButtonHover = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const icon = e.currentTarget.querySelector("[data-icon]")
+		if (icon) {
+			animate(
+				icon,
+				{ x: [0, 4, 0] },
+				{ duration: 1.5, repeat: Number.POSITIVE_INFINITY },
+			)
+		}
+	}
+
 	return (
-		<section className="bg-linear-to-b from-bg to-muted/30 py-24">
+		<section
+			ref={sectionRef}
+			className="bg-linear-to-b from-bg to-muted/30 py-24"
+		>
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<motion.div
-					className="mb-16 text-center"
-					initial={{ opacity: 0, y: 30 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.8 }}
-				>
+				<div ref={headerRef} className="mb-16 text-center opacity-0">
 					<h2 className="mb-4 font-bold text-3xl text-fg md:text-4xl lg:text-5xl">
 						Featured Projects
 					</h2>
@@ -71,18 +109,21 @@ export function ProjectsSection({
 						A showcase of my recent work, featuring modern web applications
 						built with cutting-edge technologies
 					</p>
-				</motion.div>
+				</div>
 
 				{/* Projects Grid */}
-				<motion.div
+				<div
+					ref={gridRef}
 					className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3"
-					variants={containerVariants}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true }}
 				>
 					{featuredProjects.map((project) => (
-						<motion.div key={project.id} variants={cardVariants}>
+						<article
+							key={project.id}
+							data-card
+							className="opacity-0"
+							onMouseEnter={handleCardHover}
+							onMouseLeave={handleCardLeave}
+						>
 							<Card className="group h-full border-2 border-border/50 bg-bg transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
 								{/* Project Content */}
 								<div className="p-6">
@@ -173,37 +214,31 @@ export function ProjectsSection({
 									)}
 								</div>
 							</Card>
-						</motion.div>
+						</article>
 					))}
-				</motion.div>
+				</div>
 
 				{/* View All Projects Button */}
-				<motion.div
-					className="mt-16 text-center"
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.6, delay: 0.4 }}
-				>
+				<div ref={buttonRef} className="mt-16 text-center opacity-0">
 					<a
 						href="https://github.com/onepercman"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="inline-block"
 					>
-						<Button intent="outline" size="lg" className="group">
+						<Button
+							intent="outline"
+							size="lg"
+							className="group"
+							onMouseEnter={handleButtonHover}
+						>
 							<span className="flex items-center gap-2 text-lg">
 								View All Projects
-								<motion.div
-									animate={{ x: [0, 4, 0] }}
-									transition={{ duration: 1.5, repeat: Infinity }}
-								>
-									<ExternalLink className="h-5 w-5" />
-								</motion.div>
+								<ExternalLink data-icon className="h-5 w-5" />
 							</span>
 						</Button>
 					</a>
-				</motion.div>
+				</div>
 			</div>
 		</section>
 	)

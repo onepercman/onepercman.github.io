@@ -1,7 +1,9 @@
-import { motion } from "framer-motion"
 import { ArrowDown, Download, Mail } from "lucide-react"
+import { animate, stagger } from "motion"
+import { useEffect, useRef, useState } from "react"
 import { AnimatedTitle } from "~/shared/components/animated-title"
 import { Button } from "~/shared/components/ui"
+import { useParallax } from "~/shared/hooks/use-parallax"
 import type { Profile } from "./portfolio-types"
 
 interface HeroSectionProps {
@@ -9,27 +11,36 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ profile }: HeroSectionProps) {
-	const containerVariants = {
-		hidden: { opacity: 0 },
-		visible: {
-			opacity: 1,
-			transition: {
-				staggerChildren: 0.2,
-				delayChildren: 0.3,
-			},
-		},
-	}
+	const containerRef = useRef<HTMLDivElement>(null)
+	const scrollIndicatorRef = useRef<HTMLDivElement>(null)
+	const bgOffset = useParallax({ speed: 0.3 })
+	const contentOffset = useParallax({ speed: 0.15 })
+	const [isLoaded, setIsLoaded] = useState(false)
 
-	const itemVariants = {
-		hidden: { opacity: 0, y: 30 },
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				duration: 0.8,
-			},
-		},
-	}
+	useEffect(() => {
+		if (!containerRef.current) return
+
+		setIsLoaded(true)
+		const items = containerRef.current.querySelectorAll("[data-animate]")
+
+		setTimeout(() => {
+			animate(
+				items,
+				{ opacity: [0, 1], y: [60, 0] },
+				{ duration: 0.8, delay: stagger(0.1), ease: [0.22, 1, 0.36, 1] },
+			)
+		}, 200)
+	}, [])
+
+	useEffect(() => {
+		if (!scrollIndicatorRef.current || !isLoaded) return
+
+		animate(
+			scrollIndicatorRef.current,
+			{ y: [0, 10, 0] },
+			{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+		)
+	}, [isLoaded])
 
 	const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
 		<svg viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -48,6 +59,16 @@ export function HeroSection({ profile }: HeroSectionProps) {
 			<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
 		</svg>
 	)
+
+	const handleButtonHover = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const button = e.currentTarget
+		animate(button, { scale: 1.05 }, { duration: 0.2, ease: "easeOut" })
+	}
+
+	const handleButtonLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const button = e.currentTarget
+		animate(button, { scale: 1 }, { duration: 0.2, ease: "easeOut" })
+	}
 
 	const socialLinks = [
 		{
@@ -68,37 +89,38 @@ export function HeroSection({ profile }: HeroSectionProps) {
 		{ icon: Mail, href: `mailto:${profile.links.email}`, label: "Email" },
 	]
 
+	const handleSocialHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		const link = e.currentTarget
+		animate(link, { scale: 1.1, y: -2 }, { duration: 0.2, ease: "easeOut" })
+	}
+
+	const handleSocialLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		const link = e.currentTarget
+		animate(link, { scale: 1, y: 0 }, { duration: 0.2, ease: "easeOut" })
+	}
+
 	return (
 		<section className="relative flex min-h-screen items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24">
 			{/* Background gradient */}
 			<div className="absolute inset-0 bg-linear-to-br from-bg via-bg to-muted/30" />
 
 			{/* Animated background elements */}
-			<motion.div
+			<div
 				className="absolute inset-0 opacity-20"
-				animate={{
-					background: [
-						"radial-gradient(600px circle at 0% 0%, rgb(120, 119, 198, 0.3), transparent 50%)",
-						"radial-gradient(600px circle at 100% 100%, rgb(120, 119, 198, 0.3), transparent 50%)",
-						"radial-gradient(600px circle at 0% 100%, rgb(120, 119, 198, 0.3), transparent 50%)",
-						"radial-gradient(600px circle at 100% 0%, rgb(120, 119, 198, 0.3), transparent 50%)",
-					],
-				}}
-				transition={{
-					duration: 10,
-					repeat: Infinity,
-					ease: "linear",
+				style={{
+					transform: `translateY(${bgOffset}px)`,
+					background:
+						"radial-gradient(600px circle at 50% 50%, rgb(120, 119, 198, 0.3), transparent 50%)",
 				}}
 			/>
 
-			<motion.div
+			<div
+				ref={containerRef}
 				className="relative z-10 mx-auto max-w-5xl px-6 text-center sm:px-8 lg:px-12"
-				variants={containerVariants}
-				initial="hidden"
-				animate="visible"
+				style={{ transform: `translateY(${contentOffset}px)` }}
 			>
 				{/* Avatar */}
-				<motion.div variants={itemVariants} className="mb-8">
+				<div data-animate className="mb-8 opacity-0">
 					<div className="mx-auto h-32 w-32 rounded-full bg-linear-to-br from-primary to-chart-1 p-1 shadow-2xl md:h-40 md:w-40">
 						<div className="h-full w-full overflow-hidden rounded-full bg-muted/50">
 							{profile.avatar ? (
@@ -107,7 +129,6 @@ export function HeroSection({ profile }: HeroSectionProps) {
 									alt={profile.name}
 									className="h-full w-full rounded-full object-cover transition-transform duration-500 hover:scale-110"
 									onError={(e) => {
-										// Fallback to emoji if image fails to load
 										const target = e.target as HTMLImageElement
 										target.style.display = "none"
 										const parent = target.parentElement
@@ -124,51 +145,29 @@ export function HeroSection({ profile }: HeroSectionProps) {
 							)}
 						</div>
 					</div>
-				</motion.div>
+				</div>
 
-				{/* Name with typewriter effect */}
-				<motion.div variants={itemVariants} className="mb-4">
+				{/* Name */}
+				<div data-animate className="mb-4 opacity-0">
 					<h1 className="font-bold text-4xl text-fg md:text-6xl lg:text-7xl">
 						{profile.displayName ? (
 							<div className="flex flex-wrap items-center justify-center gap-2">
-								<motion.span
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ delay: 0.5, duration: 0.8 }}
-								>
-									{profile.displayName.split(" aka ")[0]}
-								</motion.span>
-								<motion.span
-									className="font-normal text-2xl text-muted-fg italic md:text-4xl lg:text-5xl"
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ delay: 0.8, duration: 0.8 }}
-								>
+								<span>{profile.displayName.split(" aka ")[0]}</span>
+								<span className="font-normal text-2xl text-muted-fg italic md:text-4xl lg:text-5xl">
 									aka
-								</motion.span>
-								<motion.span
-									className="bg-linear-to-r from-primary to-primary/80 bg-clip-text font-bold text-transparent"
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ delay: 1.1, duration: 0.8 }}
-								>
+								</span>
+								<span className="bg-linear-to-r from-primary to-primary/80 bg-clip-text font-bold text-transparent">
 									onepercman
-								</motion.span>
+								</span>
 							</div>
 						) : (
-							<motion.span
-								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ delay: 0.5, duration: 0.8 }}
-							>
-								{profile.name}
-							</motion.span>
+							<span>{profile.name}</span>
 						)}
 					</h1>
-				</motion.div>
+				</div>
 
 				{/* Animated Title */}
-				<motion.div variants={itemVariants} className="mb-6">
+				<div data-animate className="mb-6 opacity-0">
 					{profile.animatedTitles ? (
 						<AnimatedTitle
 							titles={profile.animatedTitles}
@@ -180,39 +179,34 @@ export function HeroSection({ profile }: HeroSectionProps) {
 							{profile.title}
 						</h2>
 					)}
-				</motion.div>
+				</div>
 
 				{/* Subtitle with Location */}
-				<motion.div variants={itemVariants} className="mb-8">
+				<div data-animate className="mb-8 opacity-0">
 					<p className="mx-auto max-w-2xl text-lg text-muted-fg leading-relaxed md:text-xl">
 						{profile.subtitle}
 					</p>
-					<motion.div
-						className="mt-4 flex items-center justify-center gap-2"
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ delay: 1.2, duration: 0.5 }}
-					>
+					<div className="mt-4 flex items-center justify-center gap-2">
 						<span className="text-muted-fg/60">📍</span>
 						<span className="font-medium text-muted-fg text-sm md:text-base">
 							{profile.location}
 						</span>
-					</motion.div>
-				</motion.div>
+					</div>
+				</div>
 
 				{/* Bio */}
-				<motion.div variants={itemVariants} className="mb-12">
+				<div data-animate className="mb-12 opacity-0">
 					<p className="mx-auto max-w-3xl text-base text-muted-fg leading-relaxed md:text-lg">
 						{profile.bio}
 					</p>
-				</motion.div>
+				</div>
 
 				{/* CTA Buttons */}
-				<motion.div variants={itemVariants} className="mb-16">
+				<div data-animate className="mb-16 opacity-0">
 					<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
 						<Button
 							size="lg"
-							className="group relative overflow-hidden bg-primary px-8 py-4 font-semibold text-lg text-primary-fg hover:bg-primary/90"
+							className="relative overflow-hidden bg-primary px-8 py-4 font-semibold text-lg text-primary-fg hover:bg-primary/90"
 							onClick={() => {
 								const contactSection = document.getElementById("contact")
 								if (contactSection) {
@@ -221,21 +215,13 @@ export function HeroSection({ profile }: HeroSectionProps) {
 									window.location.href = `mailto:${profile.links.email}`
 								}
 							}}
+							onMouseEnter={handleButtonHover}
+							onMouseLeave={handleButtonLeave}
 						>
-							<motion.span
-								className="relative z-10 flex items-center gap-2"
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-							>
+							<span className="relative z-10 flex items-center gap-2">
 								<Mail className="h-5 w-5" />
 								Get in Touch
-							</motion.span>
-							<motion.div
-								className="absolute inset-0 bg-primary/20"
-								initial={{ x: "-100%" }}
-								whileHover={{ x: "100%" }}
-								transition={{ duration: 0.5 }}
-							/>
+							</span>
 						</Button>
 
 						<a
@@ -247,59 +233,49 @@ export function HeroSection({ profile }: HeroSectionProps) {
 							<Button
 								intent="outline"
 								size="lg"
-								className="group border-2 px-8 py-4 font-semibold text-lg hover:bg-accent"
+								className="border-2 px-8 py-4 font-semibold text-lg hover:bg-accent"
+								onMouseEnter={handleButtonHover}
+								onMouseLeave={handleButtonLeave}
 							>
-								<motion.span
-									className="flex items-center gap-2"
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}
-								>
+								<span className="flex items-center gap-2">
 									<Download className="h-5 w-5" />
 									Download CV
-								</motion.span>
+								</span>
 							</Button>
 						</a>
 					</div>
-				</motion.div>
+				</div>
 
 				{/* Social Links */}
-				<motion.div variants={itemVariants} className="mb-16">
+				<div data-animate className="mb-16 opacity-0">
 					<div className="flex justify-center gap-6">
 						{socialLinks.map(({ icon: Icon, href, label }) => (
-							<motion.a
+							<a
 								key={label}
 								href={href}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-muted/50 text-muted-fg transition-colors hover:border-primary hover:text-primary"
-								whileHover={{ scale: 1.1, y: -2 }}
-								whileTap={{ scale: 0.95 }}
+								onMouseEnter={handleSocialHover}
+								onMouseLeave={handleSocialLeave}
 								aria-label={label}
 							>
 								<Icon className="h-5 w-5" />
-							</motion.a>
+							</a>
 						))}
 					</div>
-				</motion.div>
+				</div>
 
 				{/* Scroll indicator */}
-				<motion.div
-					variants={itemVariants}
-					className="-translate-x-1/2 absolute bottom-8 left-1/2 transform"
+				<div
+					data-animate
+					className="-translate-x-1/2 absolute bottom-8 left-1/2 transform opacity-0"
 				>
-					<motion.div
-						animate={{ y: [0, 10, 0] }}
-						transition={{
-							duration: 2,
-							repeat: Infinity,
-							ease: "easeInOut",
-						}}
-						className="text-muted-fg"
-					>
+					<div ref={scrollIndicatorRef} className="text-muted-fg">
 						<ArrowDown className="h-6 w-6" />
-					</motion.div>
-				</motion.div>
-			</motion.div>
+					</div>
+				</div>
+			</div>
 		</section>
 	)
 }

@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { motion } from "framer-motion"
+import { animate } from "motion"
+import { useEffect, useRef } from "react"
 import {
 	ContactSection,
 	HeroSection,
 	ProjectsSection,
 	usePortfolio,
 } from "~/modules/portfolio"
+import { ScrollProgress } from "~/shared/components/scroll-progress"
 
 export const Route = createFileRoute("/")({
 	component: RouteComponent,
@@ -13,33 +15,43 @@ export const Route = createFileRoute("/")({
 
 function RouteComponent() {
 	const { data } = usePortfolio()
+	const containerRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		if (!containerRef.current) return
+
+		animate(
+			containerRef.current,
+			{ opacity: [0, 1] },
+			{ duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+		)
+	}, [])
 
 	return (
-		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			transition={{ duration: 0.5 }}
-		>
-			{/* Hero Section */}
-			<section id="hero">
-				<HeroSection profile={data.profile} />
-			</section>
+		<>
+			<ScrollProgress />
+			<div ref={containerRef} className="opacity-0">
+				{/* Hero Section */}
+				<section id="hero">
+					<HeroSection profile={data.profile} />
+				</section>
 
-			{/* Projects Section */}
-			<section id="projects">
-				<ProjectsSection
-					projects={data.projects}
-					featuredCount={data.config.featuredProjectsCount}
-				/>
-			</section>
+				{/* Projects Section */}
+				<section id="projects">
+					<ProjectsSection
+						projects={data.projects}
+						featuredCount={data.config.featuredProjectsCount}
+					/>
+				</section>
 
-			{/* Contact Section */}
-			{data.config.showContact && (
-				<ContactSection
-					profile={data.profile}
-					formspreeFormId={data.config.formspreeFormId}
-				/>
-			)}
-		</motion.div>
+				{/* Contact Section */}
+				{data.config.showContact && (
+					<ContactSection
+						profile={data.profile}
+						formspreeFormId={data.config.formspreeFormId}
+					/>
+				)}
+			</div>
+		</>
 	)
 }
