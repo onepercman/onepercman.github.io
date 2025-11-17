@@ -3,6 +3,7 @@ import { animate, stagger } from "motion"
 import { useEffect, useRef, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Button, Card, Form, TextField } from "~/shared/components/ui"
+import { useParallax } from "~/shared/hooks/use-parallax"
 import { useScrollSection } from "~/shared/hooks/use-scroll-section"
 import { submitContactForm } from "./contact-service"
 import type { Profile } from "./portfolio-types"
@@ -45,6 +46,7 @@ export function ContactSection({
 
 	const { isInView } = useScrollSection(sectionRef, { threshold: 0.1 })
 	const hasAnimated = useRef(false)
+	const parallaxOffset = useParallax({ speed: 0.25 })
 
 	useEffect(() => {
 		if (!isInView || hasAnimated.current) return
@@ -126,7 +128,10 @@ export function ContactSection({
 			id="contact"
 			className="bg-linear-to-b from-muted/30 to-bg py-24"
 		>
-			<div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+			<div
+				className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8"
+				style={{ transform: `translateY(${parallaxOffset}px)` }}
+			>
 				{/* Section Header */}
 				<div ref={headerRef} className="mb-16 text-center opacity-0">
 					<h2 className="mb-4 font-bold text-3xl text-fg md:text-4xl lg:text-5xl">

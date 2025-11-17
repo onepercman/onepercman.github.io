@@ -2,6 +2,7 @@ import { ExternalLink, Github, TrendingUp, Users, Zap } from "lucide-react"
 import { animate, stagger } from "motion"
 import { useEffect, useRef } from "react"
 import { Button, Card } from "~/shared/components/ui"
+import { useParallax } from "~/shared/hooks/use-parallax"
 import { useScrollSection } from "~/shared/hooks/use-scroll-section"
 import type { Project } from "./portfolio-types"
 
@@ -21,6 +22,7 @@ export function ProjectsSection({
 
 	const { isInView } = useScrollSection(sectionRef, { threshold: 0.1 })
 	const hasAnimated = useRef(false)
+	const parallaxOffset = useParallax({ speed: 0.2 })
 
 	const featuredProjects = projects
 		.filter((project) => project.featured)
@@ -99,7 +101,10 @@ export function ProjectsSection({
 			ref={sectionRef}
 			className="bg-linear-to-b from-bg to-muted/30 py-24"
 		>
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div
+				className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+				style={{ transform: `translateY(${parallaxOffset}px)` }}
+			>
 				{/* Section Header */}
 				<div ref={headerRef} className="mb-16 text-center opacity-0">
 					<h2 className="mb-4 font-bold text-3xl text-fg md:text-4xl lg:text-5xl">

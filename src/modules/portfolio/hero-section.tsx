@@ -3,6 +3,7 @@ import { animate, stagger } from "motion"
 import { useEffect, useRef, useState } from "react"
 import { AnimatedTitle } from "~/shared/components/animated-title"
 import { Button } from "~/shared/components/ui"
+import { useMouseParallax } from "~/shared/hooks/use-mouse-parallax"
 import { useParallax } from "~/shared/hooks/use-parallax"
 import type { Profile } from "./portfolio-types"
 
@@ -13,8 +14,13 @@ interface HeroSectionProps {
 export function HeroSection({ profile }: HeroSectionProps) {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const scrollIndicatorRef = useRef<HTMLDivElement>(null)
-	const bgOffset = useParallax({ speed: 0.3 })
-	const contentOffset = useParallax({ speed: 0.15 })
+	const avatarRef = useRef<HTMLDivElement>(null)
+	const bgOffset = useParallax({ speed: 0.8 })
+	const bgOffset2 = useParallax({ speed: 0.6, reverse: true })
+	const contentOffset = useParallax({ speed: 0.3 })
+	const avatarOffset = useParallax({ speed: 0.5 })
+	const mousePosition = useMouseParallax({ strength: 15 })
+	const mousePosition2 = useMouseParallax({ strength: 25, invert: true })
 	const [isLoaded, setIsLoaded] = useState(false)
 
 	useEffect(() => {
@@ -104,13 +110,29 @@ export function HeroSection({ profile }: HeroSectionProps) {
 			{/* Background gradient */}
 			<div className="absolute inset-0 bg-linear-to-br from-bg via-bg to-muted/30" />
 
-			{/* Animated background elements */}
+			{/* Animated background elements - Multiple layers */}
 			<div
-				className="absolute inset-0 opacity-20"
+				className="absolute inset-0 opacity-30 transition-transform duration-300 ease-out"
 				style={{
-					transform: `translateY(${bgOffset}px)`,
+					transform: `translate(${mousePosition.x}px, ${bgOffset + mousePosition.y}px)`,
 					background:
-						"radial-gradient(600px circle at 50% 50%, rgb(120, 119, 198, 0.3), transparent 50%)",
+						"radial-gradient(800px circle at 30% 20%, rgb(120, 119, 198, 0.4), transparent 60%)",
+				}}
+			/>
+			<div
+				className="absolute inset-0 opacity-20 transition-transform duration-500 ease-out"
+				style={{
+					transform: `translate(${mousePosition2.x}px, ${bgOffset2 + mousePosition2.y}px)`,
+					background:
+						"radial-gradient(600px circle at 70% 80%, rgb(147, 51, 234, 0.3), transparent 50%)",
+				}}
+			/>
+			<div
+				className="absolute inset-0 opacity-10 transition-transform duration-700 ease-out"
+				style={{
+					transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
+					background:
+						"radial-gradient(1000px circle at 50% 50%, rgb(59, 130, 246, 0.2), transparent 70%)",
 				}}
 			/>
 
@@ -120,7 +142,12 @@ export function HeroSection({ profile }: HeroSectionProps) {
 				style={{ transform: `translateY(${contentOffset}px)` }}
 			>
 				{/* Avatar */}
-				<div data-animate className="mb-8 opacity-0">
+				<div
+					ref={avatarRef}
+					data-animate
+					className="mb-8 opacity-0"
+					style={{ transform: `translateY(${avatarOffset}px)` }}
+				>
 					<div className="mx-auto h-32 w-32 rounded-full bg-linear-to-br from-primary to-chart-1 p-1 shadow-2xl md:h-40 md:w-40">
 						<div className="h-full w-full overflow-hidden rounded-full bg-muted/50">
 							{profile.avatar ? (
