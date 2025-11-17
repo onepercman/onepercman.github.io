@@ -7,6 +7,7 @@ import {
 	ProjectsSection,
 	usePortfolio,
 } from "~/modules/portfolio"
+import { Footer } from "~/shared/components/footer"
 import { ScrollProgress } from "~/shared/components/scroll-progress"
 
 export const Route = createFileRoute("/")({
@@ -51,6 +52,9 @@ function RouteComponent() {
 						formspreeFormId={data.config.formspreeFormId}
 					/>
 				)}
+
+				{/* Footer */}
+				<Footer />
 			</div>
 		</>
 	)

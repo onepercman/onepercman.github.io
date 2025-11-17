@@ -5,6 +5,7 @@ import { AnimatedTitle } from "~/shared/components/animated-title"
 import { Button } from "~/shared/components/ui"
 import { useMouseParallax } from "~/shared/hooks/use-mouse-parallax"
 import { useParallax } from "~/shared/hooks/use-parallax"
+import { useScrollProgress } from "~/shared/hooks/use-scroll-progress"
 import type { Profile } from "./portfolio-types"
 
 interface HeroSectionProps {
@@ -15,27 +16,40 @@ export function HeroSection({ profile }: HeroSectionProps) {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const scrollIndicatorRef = useRef<HTMLDivElement>(null)
 	const avatarRef = useRef<HTMLDivElement>(null)
+	const bgLayersRef = useRef<HTMLDivElement>(null)
 	const bgOffset = useParallax({ speed: 0.8 })
 	const bgOffset2 = useParallax({ speed: 0.6, reverse: true })
 	const contentOffset = useParallax({ speed: 0.3 })
-	const avatarOffset = useParallax({ speed: 0.5 })
 	const mousePosition = useMouseParallax({ strength: 15 })
 	const mousePosition2 = useMouseParallax({ strength: 25, invert: true })
+	const scrollProgress = useScrollProgress()
 	const [isLoaded, setIsLoaded] = useState(false)
 
+	const heroOpacity = Math.max(0, 1 - scrollProgress * 3)
+
 	useEffect(() => {
-		if (!containerRef.current) return
+		if (!containerRef.current || !avatarRef.current) return
 
 		setIsLoaded(true)
-		const items = containerRef.current.querySelectorAll("[data-animate]")
+		const items = containerRef.current.querySelectorAll(
+			"[data-animate]:not([data-avatar])",
+		)
 
+		// Animate avatar separately first
+		animate(
+			avatarRef.current,
+			{ opacity: [0, 1], y: [80, 0], scale: [0.8, 1] },
+			{ duration: 1, ease: [0.22, 1, 0.36, 1] },
+		)
+
+		// Then animate other items
 		setTimeout(() => {
 			animate(
 				items,
 				{ opacity: [0, 1], y: [60, 0] },
-				{ duration: 0.8, delay: stagger(0.1), ease: [0.22, 1, 0.36, 1] },
+				{ duration: 0.8, delay: stagger(0.12), ease: [0.22, 1, 0.36, 1] },
 			)
-		}, 200)
+		}, 400)
 	}, [])
 
 	useEffect(() => {
@@ -108,33 +122,43 @@ export function HeroSection({ profile }: HeroSectionProps) {
 	return (
 		<section className="relative flex min-h-screen items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24">
 			{/* Background gradient */}
-			<div className="absolute inset-0 bg-linear-to-br from-bg via-bg to-muted/30" />
+			<div className="absolute inset-0 bg-bg" />
 
-			{/* Animated background elements - Multiple layers */}
+			{/* Animated background elements - Fade on scroll */}
 			<div
-				className="absolute inset-0 opacity-30 transition-transform duration-300 ease-out"
-				style={{
-					transform: `translate(${mousePosition.x}px, ${bgOffset + mousePosition.y}px)`,
-					background:
-						"radial-gradient(800px circle at 30% 20%, rgb(120, 119, 198, 0.4), transparent 60%)",
-				}}
-			/>
-			<div
-				className="absolute inset-0 opacity-20 transition-transform duration-500 ease-out"
-				style={{
-					transform: `translate(${mousePosition2.x}px, ${bgOffset2 + mousePosition2.y}px)`,
-					background:
-						"radial-gradient(600px circle at 70% 80%, rgb(147, 51, 234, 0.3), transparent 50%)",
-				}}
-			/>
-			<div
-				className="absolute inset-0 opacity-10 transition-transform duration-700 ease-out"
-				style={{
-					transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
-					background:
-						"radial-gradient(1000px circle at 50% 50%, rgb(59, 130, 246, 0.2), transparent 70%)",
-				}}
-			/>
+				ref={bgLayersRef}
+				className="absolute inset-0 transition-opacity duration-300"
+				style={{ opacity: heroOpacity }}
+			>
+				{/* Mesh gradient background */}
+				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-bg to-bg" />
+
+				{/* Floating orbs with parallax */}
+				<div
+					className="absolute inset-0 transition-transform duration-300 ease-out"
+					style={{
+						transform: `translate(${mousePosition.x}px, ${bgOffset + mousePosition.y}px)`,
+					}}
+				>
+					<div className="absolute top-[20%] left-[15%] h-[400px] w-[400px] rounded-full bg-primary/10 blur-[100px]" />
+				</div>
+				<div
+					className="absolute inset-0 transition-transform duration-500 ease-out"
+					style={{
+						transform: `translate(${mousePosition2.x}px, ${bgOffset2 + mousePosition2.y}px)`,
+					}}
+				>
+					<div className="absolute right-[15%] bottom-[20%] h-[500px] w-[500px] rounded-full bg-chart-1/10 blur-[120px]" />
+				</div>
+				<div
+					className="absolute inset-0 transition-transform duration-700 ease-out"
+					style={{
+						transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
+					}}
+				>
+					<div className="-translate-x-1/2 -translate-y-1/2 absolute top-[50%] left-[50%] h-[600px] w-[600px] rounded-full bg-accent/5 blur-[150px]" />
+				</div>
+			</div>
 
 			<div
 				ref={containerRef}
@@ -142,12 +166,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
 				style={{ transform: `translateY(${contentOffset}px)` }}
 			>
 				{/* Avatar */}
-				<div
-					ref={avatarRef}
-					data-animate
-					className="mb-8 opacity-0"
-					style={{ transform: `translateY(${avatarOffset}px)` }}
-				>
+				<div ref={avatarRef} data-avatar className="mb-8 opacity-0">
 					<div className="mx-auto h-32 w-32 rounded-full bg-linear-to-br from-primary to-chart-1 p-1 shadow-2xl md:h-40 md:w-40">
 						<div className="h-full w-full overflow-hidden rounded-full bg-muted/50">
 							{profile.avatar ? (
