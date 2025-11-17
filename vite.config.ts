@@ -7,7 +7,15 @@ import viteTsConfigPaths from "vite-tsconfig-paths"
 
 const config = defineConfig({
 	plugins: [
-		tanstackStart({ spa: { enabled: true, prerender: { enabled: true } } }),
+		tanstackStart({
+			spa: {
+				enabled: true,
+				prerender: {
+					enabled: true,
+					outputPath: "index.html",
+				},
+			},
+		}),
 		// nitro(),
 		viteReact(),
 		viteTsConfigPaths(),
