@@ -52,10 +52,10 @@ function RouteComponent() {
 						formspreeFormId={data.config.formspreeFormId}
 					/>
 				)}
-
-				{/* Footer */}
-				<Footer />
 			</div>
+
+			{/* Footer - Outside parallax container */}
+			<Footer />
 		</>
 	)
 }
