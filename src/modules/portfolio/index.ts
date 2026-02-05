@@ -1,7 +1,4 @@
-export * from "./contact-section"
-export * from "./hero-section"
 export * from "./portfolio-data"
 export * from "./portfolio-store"
 export * from "./portfolio-types"
-export * from "./projects-section"
 export * from "./use-portfolio"
