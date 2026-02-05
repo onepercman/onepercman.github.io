@@ -419,8 +419,8 @@ export const PROJECTS: Project[] = [
 			"SSR",
 			"SEO",
 		],
-		thumbnail: "/projects/thumbnail/sonla-hpc.jpg",
-		longThumbnail: "/projects/long/sonla-hpc.jpg",
+		thumbnail: "/projects/thumbnail/sonlahpc-1.png",
+		longThumbnail: "/projects/long/sonlahpc-1.png",
 		images: [
 			"/projects/images/sonla-hpc-1.png",
 			"/projects/images/sonla-hpc-2.png",
@@ -469,8 +469,8 @@ export const PROJECTS: Project[] = [
 			"Responsive Design",
 			"Accessibility",
 		],
-		thumbnail: "/projects/thumbnail/vinhtan-tpc.jpg",
-		longThumbnail: "/projects/long/vinhtan-tpc.jpg",
+		thumbnail: "/projects/thumbnail/vinhtantpc-1.png",
+		longThumbnail: "/projects/long/vinhtantpc-1.png",
 		images: [
 			"/projects/images/vinhtan-tpc-1.png",
 			"/projects/images/vinhtan-tpc-2.png",
