@@ -103,13 +103,13 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
 				/>
 			)}
 			<div className="flex gap-2 md:gap-5">
-				<div className="font-bungee text-muted-foreground">
+				<div className="font-changa-one text-muted-fg">
 					_{(index + 1).toString().padStart(2, "0")}.
 				</div>
 				<div className="">
-					<h4 className="flex gap-4 bg-[length:200%] bg-gradient-to-r bg-right from-[50%] from-primary to-[50%] to-foreground bg-clip-text font-bungee text-4xl text-transparent xs:text-6xl transition-all duration-700 group-hover:bg-left">
+					<h4 className="flex gap-4 bg-[length:200%] bg-gradient-to-r bg-right from-[50%] from-primary to-[50%] to-fg bg-clip-text font-changa-one text-4xl text-transparent xs:text-6xl transition-all duration-700 group-hover:bg-left">
 						{project.title}
-						<span className="text-foreground opacity-0 transition-all group-hover:opacity-100">
+						<span className="text-fg opacity-0 transition-all group-hover:opacity-100">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="36"
@@ -131,12 +131,12 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
 							</svg>
 						</span>
 					</h4>
-					<div className="mt-2 flex flex-wrap gap-3 text-muted-foreground text-xs">
+					<div className="mt-2 flex flex-wrap gap-3 text-muted-fg text-xs">
 						{project.techStack.slice(0, 3).map((tech, idx, stackArr) => (
 							<div className="flex items-center gap-3" key={tech}>
 								<span className="">{tech}</span>
 								{idx !== stackArr.length - 1 && (
-									<span className="inline-block size-2 rounded-full bg-background-light"></span>
+									<span className="inline-block size-2 rounded-full bg-bg/80 backdrop-blur"></span>
 								)}
 							</div>
 						))}

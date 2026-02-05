@@ -59,7 +59,7 @@ const AboutMe = () => {
 					production systems that handle real-world complexity at scale.
 				</h2>
 
-				<p className="slide-up-and-fade border-b pb-3 text-muted-foreground">
+				<p className="slide-up-and-fade border-b pb-3 text-muted-fg">
 					This is me.
 				</p>
 
@@ -68,7 +68,7 @@ const AboutMe = () => {
 						<p className="slide-up-and-fade text-5xl">Hi, I&apos;m Trung.</p>
 					</div>
 					<div className="md:col-span-7">
-						<div className="max-w-[450px] text-lg text-muted-foreground">
+						<div className="max-w-[450px] text-lg text-muted-fg">
 							<p className="slide-up-and-fade">
 								I&apos;m a Senior Frontend Engineer with extensive experience in
 								building complex systems across enterprise, consumer, and Web3

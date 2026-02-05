@@ -257,7 +257,7 @@ const Chart = ({
 				ref={ref}
 				className={twMerge(
 					"z-20 flex w-full justify-center text-xs",
-					"[&_.recharts-cartesian-axis-tick_text]:fill-muted-fg [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/80 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-layer]:outline-hidden [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-hidden [&_.recharts-surface]:outline-hidden",
+					"[&_.recharts-cartesian-axis-tick_text]:fill-muted-fg [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/80 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-layer]:outline-hidden [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-bg-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-hidden [&_.recharts-surface]:outline-hidden",
 					// dot
 					"[&_.recharts-dot[fill='#fff']]:fill-(--line-color)",
 					// when hover over the line chart, the active dot should not have a fill or stroke
@@ -650,7 +650,7 @@ const ChartLegendContent = ({
 						key={key}
 						id={key}
 						className={twMerge(
-							"*:data-[slot=icon]:-mx-0.5 flex items-center gap-2 rounded-sm px-2 py-1 text-muted-fg *:data-[slot=icon]:size-2.5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:text-muted-fg",
+							"flex items-center gap-2 rounded-sm px-2 py-1 text-muted-fg *:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:size-2.5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:text-muted-fg",
 							"selected:bg-secondary/70 selected:text-secondary-fg",
 							"hover:bg-secondary/70 hover:text-secondary-fg",
 						)}

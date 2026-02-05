@@ -40,15 +40,15 @@ const Banner = () => {
 				ref={containerRef}
 			>
 				<div className="max-w-[544px] flex-col items-start justify-center max-md:flex max-md:grow">
-					<h1 className="banner-title slide-up-and-fade font-bungee text-6xl leading-[.95] sm:text-[80px]">
+					<h1 className="banner-title slide-up-and-fade font-changa-one text-6xl leading-[.95] sm:text-[80px]">
 						<span className="text-primary">FRONTEND</span>
 						<br /> <span className="ml-4">ENGINEER</span>
 					</h1>
-					<p className="banner-description slide-up-and-fade mt-6 text-lg text-muted-foreground">
-						Hi! I&apos;m{" "}
-						<span className="font-medium text-foreground">Trung</span>. A Senior
-						Frontend Engineer with 4+ years of experience building complex
-						frontend systems across enterprise, consumer, and Web3 products.
+					<p className="banner-description slide-up-and-fade mt-6 text-lg text-muted-fg">
+						Hi! I&apos;m <span className="font-medium text-fg">Trung</span>. A
+						Senior Frontend Engineer with 4+ years of experience building
+						complex frontend systems across enterprise, consumer, and Web3
+						products.
 					</p>
 					<a
 						href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(GENERAL_INFO.emailSubject)}&body=${encodeURIComponent(GENERAL_INFO.emailBody)}`}
@@ -64,22 +64,22 @@ const Banner = () => {
 
 				<div className="right-[4%] bottom-[10%] flex gap-4 text-center md:absolute md:flex-col md:gap-8 md:text-right">
 					<div className="slide-up-and-fade">
-						<h5 className="mb-1.5 font-bungee text-3xl text-primary sm:text-4xl">
+						<h5 className="mb-1.5 font-changa-one text-3xl text-primary sm:text-4xl">
 							4+
 						</h5>
-						<p className="text-muted-foreground">Years of Experience</p>
+						<p className="text-muted-fg">Years of Experience</p>
 					</div>
 					<div className="slide-up-and-fade">
-						<h5 className="mb-1.5 font-bungee text-3xl text-primary sm:text-4xl">
-							20+
+						<h5 className="mb-1.5 font-changa-one text-3xl text-primary sm:text-4xl">
+							300+
 						</h5>
-						<p className="text-muted-foreground">Completed Projects</p>
+						<p className="text-muted-fg">Completed Projects</p>
 					</div>
 					<div className="slide-up-and-fade">
-						<h5 className="mb-1.5 font-bungee text-3xl text-primary sm:text-4xl">
-							15K+
+						<h5 className="mb-1.5 font-changa-one text-3xl text-primary sm:text-4xl">
+							12K+
 						</h5>
-						<p className="text-muted-foreground">Hours Worked</p>
+						<p className="text-muted-fg">Hours Worked</p>
 					</div>
 				</div>
 			</div>
