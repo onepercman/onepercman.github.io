@@ -168,160 +168,14 @@ export const PROJECTS: Project[] = [
 			"Tailwind CSS",
 			"Web3",
 		],
-		thumbnail: "/projects/thumbnail/thevapelabs.jpg",
-		longThumbnail: "/projects/long/thevapelabs.jpg",
+		thumbnail: "/projects/thumbnail/thevapelabs-1.png",
+		longThumbnail: "/projects/long/thevapelabs-2.png",
 		images: [
 			"/projects/images/thevapelabs-1.png",
 			"/projects/images/thevapelabs-2.png",
 			"/projects/images/thevapelabs-3.png",
 		],
-	},
-	{
-		title: "WM - DeFi Premarket & OTC Platform",
-		slug: "wm-defi-otc",
-		year: 2024,
-		description: `
-      A decentralized premarket and OTC trading platform using escrow-based smart contracts for transparent P2P transactions.<br/><br/>
-
-      Key Features:<br/>
-      <ul>
-        <li>Escrow-based smart contract integration</li>
-        <li>P2P trading interface</li>
-        <li>Transparent transaction flows</li>
-        <li>Risk awareness UI components</li>
-        <li>Trust indicators and verification</li>
-      </ul><br/>
-
-      Focus on Trust & Transparency:
-      <ul>
-        <li>Clear visibility of escrow states</li>
-        <li>Risk warnings and confirmations</li>
-        <li>Transaction history and tracking</li>
-        <li>User reputation systems</li>
-      </ul>
-      `,
-		role: `
-      Senior Frontend Engineer at The X Lab<br/>
-      <ul>
-        <li>Developed complete frontend for OTC platform</li>
-        <li>Integrated smart contract interactions</li>
-        <li>Implemented trust and safety features</li>
-        <li>Focused on user risk awareness</li>
-      </ul>
-      `,
-		techStack: [
-			"React",
-			"TypeScript",
-			"Wagmi",
-			"Viem",
-			"Smart Contracts",
-			"Tailwind CSS",
-		],
-		thumbnail: "/projects/thumbnail/wm-defi-otc.jpg",
-		longThumbnail: "/projects/long/wm-defi-otc.jpg",
-		images: [
-			"/projects/images/wm-defi-otc-1.png",
-			"/projects/images/wm-defi-otc-2.png",
-			"/projects/images/wm-defi-otc-3.png",
-		],
-	},
-	{
-		title: "AU - AI Agent Platform",
-		slug: "au-ai-agent",
-		year: 2024,
-		description: `
-      A platform enabling users to create, configure, and share AI agents without technical knowledge, with subscription and token-based features.<br/><br/>
-
-      Key Features:<br/>
-      <ul>
-        <li>Intuitive agent configuration workflows</li>
-        <li>Subscription management system</li>
-        <li>Token-based feature access</li>
-        <li>Agent sharing and discovery</li>
-        <li>User-friendly interface for non-technical users</li>
-      </ul><br/>
-
-      Focus Areas:
-      <ul>
-        <li>Simplified complex AI configuration into guided flows</li>
-        <li>Built accessible UI for diverse user skill levels</li>
-        <li>Integrated payment and subscription systems</li>
-        <li>Designed scalable component architecture</li>
-      </ul>
-      `,
-		role: `
-      Solo Frontend Engineer at The X Lab<br/>
-      <ul>
-        <li>Owned all frontend development end-to-end</li>
-        <li>Designed and implemented complete UI/UX</li>
-        <li>Integrated with AI backend services</li>
-        <li>Delivered production-ready platform independently</li>
-      </ul>
-      `,
-		techStack: [
-			"React",
-			"TypeScript",
-			"Next.js",
-			"Zustand",
-			"React Query",
-			"Tailwind CSS",
-		],
-		thumbnail: "/projects/thumbnail/au-ai-agent.jpg",
-		longThumbnail: "/projects/long/au-ai-agent.jpg",
-		images: [
-			"/projects/images/au-ai-agent-1.png",
-			"/projects/images/au-ai-agent-2.png",
-			"/projects/images/au-ai-agent-3.png",
-		],
-	},
-	{
-		title: "SC - Derivatives Trading Platform",
-		slug: "sc-trading",
-		year: 2024,
-		description: `
-      An advanced orderbook-based derivatives trading platform supporting leverage up to x1000, with real-time price charts and accurate PnL calculations.<br/><br/>
-
-      Key Features:<br/>
-      <ul>
-        <li>Real-time orderbook and trade matching</li>
-        <li>Live price charts for BTC and ETH</li>
-        <li>Accurate PnL/ROI calculations with leverage</li>
-        <li>Prediction market module (Polymarket-inspired)</li>
-        <li>Complex financial UI with data-intensive updates</li>
-      </ul><br/>
-
-      Technical Challenges:
-      <ul>
-        <li>Optimized real-time data handling for thousands of updates per second</li>
-        <li>Implemented precise financial calculations for leveraged positions</li>
-        <li>Built responsive trading interface with minimal latency</li>
-        <li>Ensured data accuracy across multiple concurrent operations</li>
-      </ul>
-      `,
-		role: `
-      Frontend Lead at The X Lab<br/>
-      <ul>
-        <li>Owned frontend architecture and implementation</li>
-        <li>Led technical decisions for real-time trading systems</li>
-        <li>Implemented complex trading logic and calculations</li>
-        <li>Maintained code quality across the project</li>
-      </ul>
-      `,
-		techStack: [
-			"React",
-			"TypeScript",
-			"Zustand",
-			"WebSocket",
-			"TradingView Charts",
-			"Tailwind CSS",
-		],
-		thumbnail: "/projects/thumbnail/sc-trading.jpg",
-		longThumbnail: "/projects/long/sc-trading.jpg",
-		images: [
-			"/projects/images/sc-trading-1.png",
-			"/projects/images/sc-trading-2.png",
-			"/projects/images/sc-trading-3.png",
-		],
+		liveUrl: "https://thevapelabs.io/",
 	},
 	{
 		title: "Mcity - Metaverse Platform",
@@ -364,13 +218,14 @@ export const PROJECTS: Project[] = [
 			"WebGL",
 			"Tailwind CSS",
 		],
-		thumbnail: "/projects/thumbnail/mcity-metaverse.jpg",
-		longThumbnail: "/projects/long/mcity-metaverse.jpg",
+		thumbnail: "/projects/thumbnail/mcity-1.png",
+		longThumbnail: "/projects/long/mcity-1.png",
 		images: [
 			"/projects/images/mcity-metaverse-1.png",
 			"/projects/images/mcity-metaverse-2.png",
 			"/projects/images/mcity-metaverse-3.png",
 		],
+		liveUrl: "https://mcity.net",
 	},
 	{
 		title: "ONUS Chain Block Explorer",
@@ -413,13 +268,14 @@ export const PROJECTS: Project[] = [
 			"PostgreSQL",
 			"Web3.js",
 		],
-		thumbnail: "/projects/thumbnail/onus-chain-explorer.jpg",
-		longThumbnail: "/projects/long/onus-chain-explorer.jpg",
+		thumbnail: "/projects/thumbnail/onuschain-1.png",
+		longThumbnail: "/projects/long/onuschain-1.png",
 		images: [
 			"/projects/images/onus-chain-explorer-1.png",
 			"/projects/images/onus-chain-explorer-2.png",
 			"/projects/images/onus-chain-explorer-3.png",
 		],
+		liveUrl: "https://onuschain.io",
 	},
 	{
 		title: "Run Together (Move-to-Earn)",
@@ -462,13 +318,14 @@ export const PROJECTS: Project[] = [
 			"Tailwind CSS",
 			"NFT Integration",
 		],
-		thumbnail: "/projects/thumbnail/run-together.jpg",
-		longThumbnail: "/projects/long/run-together.jpg",
+		thumbnail: "/projects/thumbnail/runtogether-1.png",
+		longThumbnail: "/projects/long/runtogether-1.png",
 		images: [
 			"/projects/images/run-together-1.png",
 			"/projects/images/run-together-2.png",
 			"/projects/images/run-together-3.png",
 		],
+		liveUrl: "https://runtogether.vn/",
 	},
 	{
 		title: "Animverse - GameFi Platform",
@@ -511,63 +368,14 @@ export const PROJECTS: Project[] = [
 			"NFT Integration",
 			"Tailwind CSS",
 		],
-		thumbnail: "/projects/thumbnail/animverse-gamefi.jpg",
-		longThumbnail: "/projects/long/animverse-gamefi.jpg",
+		thumbnail: "/projects/thumbnail/animverse-1.png",
+		longThumbnail: "/projects/long/animverse-1.png",
 		images: [
 			"/projects/images/animverse-gamefi-1.png",
 			"/projects/images/animverse-gamefi-2.png",
 			"/projects/images/animverse-gamefi-3.png",
 		],
-	},
-	{
-		title: "Web3 White-Label Products (Confidential)",
-		slug: "web3-white-label",
-		year: 2023,
-		description: `
-      Delivered dozens of Web3 white-label products including DEXs, launchpads, and trading platforms for international partners under NDA.<br/><br/>
-
-      Project Scope:<br/>
-      <ul>
-        <li>Built customizable DEX (Decentralized Exchange) interfaces</li>
-        <li>Developed token launchpad platforms with vesting and distribution</li>
-        <li>Implemented trading dashboards with real-time price feeds</li>
-        <li>Created reusable component libraries for rapid deployment</li>
-        <li>Focused on core user flows and reliable delivery</li>
-      </ul><br/>
-
-      Technical Approach:
-      <ul>
-        <li>Established scalable architecture for multi-tenant deployments</li>
-        <li>Built theme customization system for brand flexibility</li>
-        <li>Integrated with multiple blockchain networks (ETH, BSC, Polygon)</li>
-        <li>Optimized for fast iteration and client-specific requirements</li>
-      </ul>
-      `,
-		role: `
-      Frontend Engineer at Moonlab<br/>
-      <ul>
-        <li>Led frontend development for multiple white-label products</li>
-        <li>Built reusable component systems for rapid deployment</li>
-        <li>Delivered DEXs and launchpads for international clients</li>
-        <li>Ensured code quality and reliable product delivery under NDA</li>
-      </ul>
-      `,
-		techStack: [
-			"React",
-			"TypeScript",
-			"Web3.js",
-			"Wagmi",
-			"Redux",
-			"Tailwind CSS",
-			"Multi-chain",
-		],
-		thumbnail: "/projects/thumbnail/web3-white-label.jpg",
-		longThumbnail: "/projects/long/web3-white-label.jpg",
-		images: [
-			"/projects/images/web3-white-label-1.png",
-			"/projects/images/web3-white-label-2.png",
-			"/projects/images/web3-white-label-3.png",
-		],
+		liveUrl: "https://animverse.com/",
 	},
 	{
 		title: "Son La Hydropower Company",
@@ -618,6 +426,7 @@ export const PROJECTS: Project[] = [
 			"/projects/images/sonla-hpc-2.png",
 			"/projects/images/sonla-hpc-3.png",
 		],
+		liveUrl: "https://sonlahpc.com.vn/",
 	},
 	{
 		title: "Vinh Tan Thermal Power Company",
@@ -667,6 +476,7 @@ export const PROJECTS: Project[] = [
 			"/projects/images/vinhtan-tpc-2.png",
 			"/projects/images/vinhtan-tpc-3.png",
 		],
+		liveUrl: "https://www.vinhtantpc.com.vn/",
 	},
 ]
 
