@@ -64,7 +64,7 @@ const Skills = () => {
 					{Object.entries(MY_STACK).map(([key, value]) => (
 						<div className="grid sm:grid-cols-12" key={key}>
 							<div className="sm:col-span-5">
-								<p className="slide-up font-anton text-5xl text-muted-foreground uppercase leading-none">
+								<p className="slide-up font-bungee text-5xl text-muted-foreground uppercase leading-none">
 									{key}
 								</p>
 							</div>

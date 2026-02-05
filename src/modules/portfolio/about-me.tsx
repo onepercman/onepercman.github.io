@@ -55,8 +55,8 @@ const AboutMe = () => {
 		<section className="pb-section" id="about-me">
 			<div className="container" ref={container}>
 				<h2 className="slide-up-and-fade mb-20 font-thin text-4xl md:text-6xl">
-					I believe in a user centered design approach, ensuring that every
-					project I work on is tailored to meet the specific needs of its users.
+					I focus on building scalable frontend architectures and delivering
+					production systems that handle real-world complexity at scale.
 				</h2>
 
 				<p className="slide-up-and-fade border-b pb-3 text-muted-foreground">
@@ -65,21 +65,22 @@ const AboutMe = () => {
 
 				<div className="mt-9 grid md:grid-cols-12">
 					<div className="md:col-span-5">
-						<p className="slide-up-and-fade text-5xl">Hi, I&apos;m Tajmirul.</p>
+						<p className="slide-up-and-fade text-5xl">Hi, I&apos;m Trung.</p>
 					</div>
 					<div className="md:col-span-7">
 						<div className="max-w-[450px] text-lg text-muted-foreground">
 							<p className="slide-up-and-fade">
-								I&apos;m a frontend web developer dedicated to turning ideas
-								into creative solutions. I specialize in creating seamless and
-								intuitive user experiences.
+								I&apos;m a Senior Frontend Engineer with extensive experience in
+								building complex systems across enterprise, consumer, and Web3
+								products. I specialize in frontend architecture, data-intensive
+								interfaces, and real-time systems.
 							</p>
 							<p className="slide-up-and-fade mt-3">
-								My approach focuses on creating scalable, high-performing
-								solutions tailored to both user needs and business objectives.
-								By prioritizing performance, accessibility, and responsiveness,
-								I strive to deliver experiences that not only engage users but
-								also drive tangible results.
+								My expertise spans from zero-to-one product development to
+								scaling production systems under performance constraints. I have
+								led frontend teams, mentored engineers, and delivered
+								high-impact projects in fintech, DeFi, AI platforms, and
+								metaverse applications.
 							</p>
 						</div>
 					</div>

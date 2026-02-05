@@ -1,6 +1,7 @@
 import { ReactLenis } from "lenis/react"
 import type { PropsWithChildren } from "react"
 import CustomCursor from "./custom-cursor"
+import { Footer } from "./footer"
 import Navbar from "./navbar"
 import ParticleBackground from "./particle-background"
 import Preloader from "./preloader"
@@ -18,6 +19,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
 		>
 			<Navbar />
 			<main>{children}</main>
+			<Footer />
 
 			<CustomCursor />
 			<Preloader />

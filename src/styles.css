@@ -12,6 +12,9 @@
   --font-mono:
     "Geist Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco",
     "Consolas", '"Liberation Mono"', '"Courier New"', "monospace";
+   
+  --font-bungee: "Bungee";
+
 
   --font-sans--font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   --font-mono--font-feature-settings: "ss02", "zero";
@@ -284,6 +287,10 @@
   ::-webkit-scrollbar-thumb {
     background: var(--border);
     border-radius: 4px;
+  }
+
+  .container {
+    @apply mx-auto transition-all px-4;
   }
 }
 
