@@ -41,15 +41,23 @@ const Banner = () => {
 				ref={containerRef}
 			>
 				<div className="max-w-[544px] flex-col items-start justify-center max-md:flex max-md:grow">
-					<h1 className="banner-title slide-up-and-fade font-changa-one text-6xl leading-[.95] sm:text-[80px]">
-						<span className="text-primary">FRONTEND</span>
-						<br /> <span className="ml-4">ENGINEER</span>
-					</h1>
+					<div className="banner-title slide-up-and-fade flex items-center gap-2">
+						<img
+							src="/images/avatar.png"
+							alt={GENERAL_INFO.name}
+							className="aspect-square w-[114px] rounded-full border-2 border-fg object-cover shadow-lg sm:w-[152px]"
+						/>
+						<div className="h-full w-px self-stretch bg-border" />
+						<h1 className="font-changa-one text-6xl leading-[.95] sm:text-[80px]">
+							<span className="text-primary">FRONTEND</span>
+							<br /> <span className="ml-4">ENGINEER</span>
+						</h1>
+					</div>
 					<p className="banner-description slide-up-and-fade mt-6 text-lg text-muted-fg">
 						Hi! I&apos;m{" "}
 						<span className="font-medium text-fg">{GENERAL_INFO.name}</span>{" "}
-						(aka <span className="text-primary">{GENERAL_INFO.nickname}</span>).
-						A Senior Frontend Engineer with 4+ years of experience building
+						(aka <span className="text-fg">{GENERAL_INFO.nickname}</span>). A
+						Senior Frontend Engineer with 4+ years of experience building
 						complex frontend systems across enterprise, consumer, and Web3
 						products.
 					</p>

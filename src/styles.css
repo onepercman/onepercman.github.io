@@ -272,6 +272,28 @@
   body {
     background-color: var(--bg);
     color: var(--fg);
+    cursor: none; /* Hide default cursor on desktop */
+  }
+
+  /* Show default cursor on mobile/tablet where custom cursor is hidden */
+  @media (max-width: 767px) {
+    body {
+      cursor: auto;
+    }
+  }
+
+  /* Hide cursor for all interactive elements on desktop */
+  @media (min-width: 768px) {
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    [role="link"],
+    .cursor-pointer {
+      cursor: none;
+    }
   }
 
   ::-webkit-scrollbar {
