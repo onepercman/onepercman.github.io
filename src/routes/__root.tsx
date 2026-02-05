@@ -2,6 +2,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools"
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
 import { META_DATA, SOCIAL_URLS } from "~/modules/portfolio"
+import MainLayout from "~/shared/layouts/main-layout"
 import QueryProvider from "~/shared/providers/query-provider"
 import { ThemeProvider } from "~/shared/providers/theme-provider"
 import appCss from "../styles.css?url"
@@ -164,7 +165,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<ThemeProvider>
-					<QueryProvider>{children}</QueryProvider>
+					<QueryProvider>
+						<MainLayout>{children}</MainLayout>
+					</QueryProvider>
 				</ThemeProvider>
 
 				<TanStackDevtools

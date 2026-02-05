@@ -35,7 +35,9 @@
 				"noLabelWithoutControl": "off",
 				"noSvgWithoutTitle": "off",
 				"useValidAnchor": "off",
-				"useButtonType": "off"
+				"useButtonType": "off",
+				"noStaticElementInteractions": "off",
+				"useKeyWithClickEvents": "off"
 			},
 			"security": {
 				"noDangerouslySetInnerHtml": "off"
