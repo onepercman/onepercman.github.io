@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/all"
+import { FileText } from "lucide-react"
 import React from "react"
 import ArrowAnimation from "~/shared/components/arrow-animation"
 import { Button } from "~/shared/components/ui"
@@ -45,21 +46,34 @@ const Banner = () => {
 						<br /> <span className="ml-4">ENGINEER</span>
 					</h1>
 					<p className="banner-description slide-up-and-fade mt-6 text-lg text-muted-fg">
-						Hi! I&apos;m <span className="font-medium text-fg">Trung</span>. A
-						Senior Frontend Engineer with 4+ years of experience building
+						Hi! I&apos;m{" "}
+						<span className="font-medium text-fg">{GENERAL_INFO.name}</span>{" "}
+						(aka <span className="text-primary">{GENERAL_INFO.nickname}</span>).
+						A Senior Frontend Engineer with 4+ years of experience building
 						complex frontend systems across enterprise, consumer, and Web3
 						products.
 					</p>
-					<a
-						href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(GENERAL_INFO.emailSubject)}&body=${encodeURIComponent(GENERAL_INFO.emailBody)}`}
-					>
-						<Button
-							intent="primary"
-							className="banner-button slide-up-and-fade mt-9"
+					<div className="mt-9 flex flex-wrap items-center gap-4">
+						<a
+							href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(GENERAL_INFO.emailSubject)}&body=${encodeURIComponent(GENERAL_INFO.emailBody)}`}
 						>
-							Contact Me
-						</Button>
-					</a>
+							<Button
+								intent="primary"
+								className="banner-button slide-up-and-fade"
+							>
+								Contact Me
+							</Button>
+						</a>
+						<a href="/files/cv.pdf" target="_blank" rel="noopener noreferrer">
+							<Button
+								intent="secondary"
+								className="banner-button slide-up-and-fade group"
+							>
+								<FileText className="mr-2 h-5 w-5 transition-transform group-hover:rotate-3 group-hover:scale-110" />
+								View CV
+							</Button>
+						</a>
+					</div>
 				</div>
 
 				<div className="right-[4%] bottom-[10%] flex gap-4 text-center md:absolute md:flex-col md:gap-8 md:text-right">

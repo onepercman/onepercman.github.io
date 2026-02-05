@@ -6,7 +6,6 @@ import Navbar from "./navbar"
 import ParticleBackground from "./particle-background"
 import Preloader from "./preloader"
 import ScrollProgressIndicator from "./scroll-progress-indicator"
-import StickyEmail from "./sticky-email"
 
 export default function MainLayout({ children }: PropsWithChildren) {
 	return (
@@ -25,7 +24,6 @@ export default function MainLayout({ children }: PropsWithChildren) {
 			<Preloader />
 			<ScrollProgressIndicator />
 			<ParticleBackground />
-			<StickyEmail />
 		</ReactLenis>
 	)
 }

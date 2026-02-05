@@ -14,8 +14,11 @@ export interface Project {
 
 export const GENERAL_INFO = {
 	name: "Trung Tran Duy",
+	nickname: "onepercman",
 	title: "Senior Frontend Engineer / Frontend Lead",
 	email: "onepercman@gmail.com",
+	phone: "+84 889388820",
+	avatar: "/images/avatar.png",
 
 	emailSubject: "Let's collaborate on a project",
 	emailBody: "Hi Trung, I am reaching out to you because...",
@@ -27,6 +30,7 @@ export const GENERAL_INFO = {
 export const SOCIAL_LINKS = [
 	{ name: "github", url: "https://github.com/onepercman" },
 	{ name: "linkedin", url: "https://www.linkedin.com/in/onepercman" },
+	{ name: "twitter", url: "https://twitter.com/onepercman" },
 ]
 
 export const MY_STACK = {
@@ -40,12 +44,12 @@ export const MY_STACK = {
 			icon: "/logo/ts.png",
 		},
 		{
-			name: "Next.js",
-			icon: "/logo/next.png",
+			name: "JavaScript",
+			icon: "/logo/js.png",
 		},
 		{
-			name: "Vite",
-			icon: "/logo/vite.svg",
+			name: "Next.js",
+			icon: "/logo/next.png",
 		},
 		{
 			name: "Tailwind CSS",
@@ -56,26 +60,50 @@ export const MY_STACK = {
 			icon: "/logo/redux.png",
 		},
 		{
-			name: "Zustand",
-			icon: "/logo/zustand.png",
+			name: "Sass",
+			icon: "/logo/sass.png",
 		},
 		{
-			name: "Three.js",
-			icon: "/logo/threejs.svg",
+			name: "Bootstrap",
+			icon: "/logo/bootstrap.svg",
+		},
+		{
+			name: "Framer Motion",
+			icon: "/logo/framer-motion.svg",
+		},
+		{
+			name: "GSAP",
+			icon: "/logo/gsap.png",
 		},
 	],
-	web3: [
+	backend: [
 		{
-			name: "Wagmi",
-			icon: "/logo/wagmi.svg",
+			name: "Node.js",
+			icon: "/logo/node.png",
 		},
 		{
-			name: "Ethers.js",
-			icon: "/logo/ethers.png",
+			name: "NestJS",
+			icon: "/logo/nest.svg",
 		},
 		{
-			name: "Web3.js",
-			icon: "/logo/web3js.png",
+			name: "Express",
+			icon: "/logo/express.png",
+		},
+		{
+			name: "PostgreSQL",
+			icon: "/logo/postgreSQL.png",
+		},
+		{
+			name: "MySQL",
+			icon: "/logo/mysql.svg",
+		},
+		{
+			name: "MongoDB",
+			icon: "/logo/mongodb.svg",
+		},
+		{
+			name: "Prisma",
+			icon: "/logo/prisma.png",
 		},
 	],
 	tools: [
@@ -84,12 +112,16 @@ export const MY_STACK = {
 			icon: "/logo/git.png",
 		},
 		{
-			name: "Figma",
-			icon: "/logo/figma.svg",
+			name: "GitHub",
+			icon: "/logo/github.png",
 		},
 		{
-			name: "Jira",
-			icon: "/logo/jira.svg",
+			name: "Docker",
+			icon: "/logo/docker.svg",
+		},
+		{
+			name: "AWS",
+			icon: "/logo/aws.png",
 		},
 	],
 }
@@ -538,11 +570,11 @@ export const PROJECTS: Project[] = [
 		],
 	},
 	{
-		title: "Son La Hydropower Company - CMS Platform",
-		slug: "sonla-hpc-cms",
+		title: "Son La Hydropower Company",
+		slug: "sonla-hpc",
 		year: 2022,
 		description: `
-      Enterprise CMS/CRM platform for Son La Hydropower Company, one of Vietnam's largest state-owned hydropower facilities.<br/><br/>
+      Enterprise CMS/CRM platform and public portal for Son La Hydropower Company, one of Vietnam's largest state-owned hydropower facilities.<br/><br/>
 
       Project Scope:<br/>
       <ul>
@@ -564,7 +596,7 @@ export const PROJECTS: Project[] = [
 		role: `
       Frontend Engineer (Junior) at Teracom<br/>
       <ul>
-        <li>Owned frontend development for CMS platform</li>
+        <li>Owned frontend development for CMS/CRM and public portal</li>
         <li>Led refactoring efforts to modernize codebase</li>
         <li>Pioneered SSR implementation for government portal</li>
         <li>Delivered production-ready enterprise system</li>
@@ -579,20 +611,20 @@ export const PROJECTS: Project[] = [
 			"SSR",
 			"SEO",
 		],
-		thumbnail: "/projects/thumbnail/sonla-hpc-cms.jpg",
-		longThumbnail: "/projects/long/sonla-hpc-cms.jpg",
+		thumbnail: "/projects/thumbnail/sonla-hpc.jpg",
+		longThumbnail: "/projects/long/sonla-hpc.jpg",
 		images: [
-			"/projects/images/sonla-hpc-cms-1.png",
-			"/projects/images/sonla-hpc-cms-2.png",
-			"/projects/images/sonla-hpc-cms-3.png",
+			"/projects/images/sonla-hpc-1.png",
+			"/projects/images/sonla-hpc-2.png",
+			"/projects/images/sonla-hpc-3.png",
 		],
 	},
 	{
-		title: "Vinh Tan Thermal Power Company - Public Portal",
-		slug: "vinhtan-tpc-portal",
+		title: "Vinh Tan Thermal Power Company",
+		slug: "vinhtan-tpc",
 		year: 2021,
 		description: `
-      Public information portal for Vinh Tan Thermal Power Company, a major state-owned thermal power plant in Vietnam.<br/><br/>
+      Public portal and CMS for Vinh Tan Thermal Power Company, a major state-owned thermal power plant in Vietnam.<br/><br/>
 
       Project Scope:<br/>
       <ul>
@@ -614,7 +646,7 @@ export const PROJECTS: Project[] = [
 		role: `
       Frontend Engineer (Intern) at Teracom<br/>
       <ul>
-        <li>Contributed to frontend development for public portal</li>
+        <li>Contributed to frontend development for public portal and CMS</li>
         <li>Implemented responsive and accessible UI components</li>
         <li>Applied SEO optimization techniques</li>
         <li>Delivered government-standard web portal</li>
@@ -628,12 +660,12 @@ export const PROJECTS: Project[] = [
 			"Responsive Design",
 			"Accessibility",
 		],
-		thumbnail: "/projects/thumbnail/vinhtan-tpc-portal.jpg",
-		longThumbnail: "/projects/long/vinhtan-tpc-portal.jpg",
+		thumbnail: "/projects/thumbnail/vinhtan-tpc.jpg",
+		longThumbnail: "/projects/long/vinhtan-tpc.jpg",
 		images: [
-			"/projects/images/vinhtan-tpc-portal-1.png",
-			"/projects/images/vinhtan-tpc-portal-2.png",
-			"/projects/images/vinhtan-tpc-portal-3.png",
+			"/projects/images/vinhtan-tpc-1.png",
+			"/projects/images/vinhtan-tpc-2.png",
+			"/projects/images/vinhtan-tpc-3.png",
 		],
 	},
 ]
