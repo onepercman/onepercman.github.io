@@ -1,4 +1,4 @@
-import { Flower } from "lucide-react"
+import { Diamond } from "lucide-react"
 import type { ReactNode } from "react"
 import { cn } from "../utils"
 
@@ -25,12 +25,17 @@ const SectionTitle = ({ icon, title, className, classNames }: Props) => {
 			{icon ? (
 				icon
 			) : (
-				<Flower
+				<Diamond
 					width={25}
 					className={cn("animate-spin duration-7000", classNames?.icon)}
 				/>
 			)}
-			<h2 className={cn("text-xl uppercase leading-none", classNames?.title)}>
+			<h2
+				className={cn(
+					"font-bold text-2xl uppercase leading-none",
+					classNames?.title,
+				)}
+			>
 				{title}
 			</h2>
 		</div>
