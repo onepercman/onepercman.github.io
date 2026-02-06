@@ -1,15 +1,12 @@
 import { TanStackDevtools } from "@tanstack/react-devtools"
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
-import { META_DATA, SOCIAL_URLS } from "~/modules/portfolio"
 import MainLayout from "~/shared/layouts/main-layout"
 import { ThemeProvider } from "~/shared/providers/theme-provider"
 import appCss from "../styles.css?url"
 
 export const Route = createRootRoute({
 	head: () => {
-		const location = META_DATA.location.split(", ")
-
 		return {
 			meta: [
 				{
@@ -19,20 +16,38 @@ export const Route = createRootRoute({
 					name: "viewport",
 					content: "width=device-width, initial-scale=1",
 				},
-				{ title: META_DATA.siteName },
-				{ name: "description", content: META_DATA.description },
-				{ name: "keywords", content: META_DATA.keywords },
-				{ name: "author", content: META_DATA.author },
+				{ title: "onepercman - Frontend Engineer & Web3 Enthusiast" },
+				{
+					name: "description",
+					content:
+						"Frontend Engineer with a zen approach to crafting efficient web and Web3 applications. Passionate about clean code, optimal performance, and seamless user experiences.",
+				},
+				{
+					name: "keywords",
+					content:
+						"Frontend Engineer, Web3 Developer, React, TypeScript, TailwindCSS, Blockchain, DeFi, onepercman, onepercman",
+				},
+				{ name: "author", content: "Trung Tran Duy (onepercman)" },
 				{ name: "robots", content: "index, follow" },
 				{ name: "language", content: "en" },
 				{ name: "revisit-after", content: "7 days" },
 
 				// Open Graph / Facebook
 				{ property: "og:type", content: "website" },
-				{ property: "og:url", content: META_DATA.siteUrl },
-				{ property: "og:title", content: META_DATA.siteName },
-				{ property: "og:description", content: META_DATA.description },
-				{ property: "og:image", content: META_DATA.ogImage },
+				{ property: "og:url", content: "https://onepercman.com" },
+				{
+					property: "og:title",
+					content: "onepercman - Frontend Engineer & Web3 Enthusiast",
+				},
+				{
+					property: "og:description",
+					content:
+						"Frontend Engineer with a zen approach to crafting efficient web and Web3 applications. Passionate about clean code, optimal performance, and seamless user experiences.",
+				},
+				{
+					property: "og:image",
+					content: "https://onepercman.com/images/og-image.png",
+				},
 				{ property: "og:image:width", content: "1200" },
 				{ property: "og:image:height", content: "630" },
 				{ property: "og:site_name", content: "onepercman.com" },
@@ -40,12 +55,22 @@ export const Route = createRootRoute({
 
 				// Twitter
 				{ name: "twitter:card", content: "summary_large_image" },
-				{ name: "twitter:url", content: META_DATA.siteUrl },
-				{ name: "twitter:title", content: META_DATA.siteName },
-				{ name: "twitter:description", content: META_DATA.description },
-				{ name: "twitter:image", content: META_DATA.ogImage },
-				{ name: "twitter:site", content: SOCIAL_URLS.twitterHandle },
-				{ name: "twitter:creator", content: SOCIAL_URLS.twitterHandle },
+				{ name: "twitter:url", content: "https://onepercman.com" },
+				{
+					name: "twitter:title",
+					content: "onepercman - Frontend Engineer & Web3 Enthusiast",
+				},
+				{
+					name: "twitter:description",
+					content:
+						"Frontend Engineer with a zen approach to crafting efficient web and Web3 applications. Passionate about clean code, optimal performance, and seamless user experiences.",
+				},
+				{
+					name: "twitter:image",
+					content: "https://onepercman.com/images/og-image.png",
+				},
+				{ name: "twitter:site", content: "@onepercman" },
+				{ name: "twitter:creator", content: "@onepercman" },
 
 				// Additional SEO
 				{ name: "theme-color", content: "#ef4444" },
@@ -66,18 +91,19 @@ export const Route = createRootRoute({
 					"script:ld+json": {
 						"@context": "https://schema.org",
 						"@type": "Person",
-						name: META_DATA.author.split(" (")[0], // Extract real name
+						name: "Trung Tran Duy",
 						alternateName: "onepercman",
-						description: META_DATA.description,
-						url: META_DATA.siteUrl,
-						image: META_DATA.ogImage,
-						email: META_DATA.email,
+						description:
+							"Frontend Engineer with a zen approach to crafting efficient web and Web3 applications. Passionate about clean code, optimal performance, and seamless user experiences.",
+						url: "https://onepercman.com",
+						image: "https://onepercman.com/images/og-image.png",
+						email: "onepercman@gmail.com",
 						sameAs: [
-							SOCIAL_URLS.github,
-							SOCIAL_URLS.linkedin,
-							SOCIAL_URLS.twitter,
+							"https://github.com/onepercman",
+							"https://linkedin.com/in/onepercman",
+							"https://twitter.com/onepercman",
 						],
-						jobTitle: META_DATA.title,
+						jobTitle: "Frontend Engineer",
 						worksFor: {
 							"@type": "Organization",
 							name: "Freelancer",
@@ -93,8 +119,8 @@ export const Route = createRootRoute({
 						],
 						address: {
 							"@type": "PostalAddress",
-							addressLocality: location[0] || "Hanoi",
-							addressCountry: location[1] || "Vietnam",
+							addressLocality: "Hanoi",
+							addressCountry: "Vietnam",
 						},
 					},
 				},
