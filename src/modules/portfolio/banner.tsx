@@ -45,9 +45,9 @@ const Banner = () => {
 						<img
 							src="/images/avatar.png"
 							alt={GENERAL_INFO.name}
-							className="aspect-square w-[114px] rounded-full border-2 border-fg object-cover shadow-lg sm:w-[152px]"
+							className="aspect-square w-20 rounded-full border-2 border-fg object-cover shadow-lg sm:w-[114px] md:w-[152px]"
 						/>
-						<h1 className="font-changa-one text-5xl leading-[.95] sm:text-[80px]">
+						<h1 className="font-changa-one text-4xl leading-[.95] sm:text-5xl md:text-[80px]">
 							<span className="text-primary">FRONTEND</span>
 							<br /> <span className="ml-4">ENGINEER</span>
 						</h1>
