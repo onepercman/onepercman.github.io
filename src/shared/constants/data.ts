@@ -52,20 +52,24 @@ export const MY_STACK = {
 			icon: "/logo/next.png",
 		},
 		{
-			name: "Tailwind CSS",
-			icon: "/logo/tailwind.png",
+			name: "TanStack",
+			icon: "/logo/tanstack.png",
+		},
+		{
+			name: "Vite",
+			icon: "/logo/vite.svg",
 		},
 		{
 			name: "Redux",
 			icon: "/logo/redux.png",
 		},
 		{
-			name: "Sass",
-			icon: "/logo/sass.png",
+			name: "Zustand",
+			icon: "/logo/zustand.svg",
 		},
 		{
-			name: "Bootstrap",
-			icon: "/logo/bootstrap.svg",
+			name: "Tailwind CSS",
+			icon: "/logo/tailwind.png",
 		},
 		{
 			name: "Framer Motion",
@@ -74,6 +78,18 @@ export const MY_STACK = {
 		{
 			name: "GSAP",
 			icon: "/logo/gsap.png",
+		},
+		{
+			name: "EthersJs",
+			icon: "/logo/ethersjs.png",
+		},
+		{
+			name: "Viem",
+			icon: "/logo/viem.png",
+		},
+		{
+			name: "Wagmi",
+			icon: "/logo/wagmi.svg",
 		},
 	],
 	backend: [
@@ -90,20 +106,16 @@ export const MY_STACK = {
 			icon: "/logo/express.png",
 		},
 		{
+			name: "Hono",
+			icon: "/logo/hono.svg",
+		},
+		{
 			name: "PostgreSQL",
 			icon: "/logo/postgreSQL.png",
 		},
 		{
-			name: "MySQL",
-			icon: "/logo/mysql.svg",
-		},
-		{
 			name: "MongoDB",
 			icon: "/logo/mongodb.svg",
-		},
-		{
-			name: "Prisma",
-			icon: "/logo/prisma.png",
 		},
 	],
 	tools: [
@@ -120,8 +132,8 @@ export const MY_STACK = {
 			icon: "/logo/docker.svg",
 		},
 		{
-			name: "AWS",
-			icon: "/logo/aws.png",
+			name: "Claude Code",
+			icon: "/logo/claude-code.svg",
 		},
 	],
 }
