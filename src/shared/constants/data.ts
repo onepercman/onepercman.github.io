@@ -5,7 +5,6 @@ export interface Project {
 	role: string
 	techStack: string[]
 	thumbnail: string
-	longThumbnail: string
 	images: string[]
 	slug: string
 	liveUrl?: string
@@ -181,7 +180,6 @@ export const PROJECTS: Project[] = [
 			"Web3",
 		],
 		thumbnail: "/projects/thumbnail/thevapelabs-1.png",
-		longThumbnail: "/projects/long/thevapelabs-2.png",
 		images: [
 			"/projects/images/thevapelabs-1.png",
 			"/projects/images/thevapelabs-2.png",
@@ -231,7 +229,6 @@ export const PROJECTS: Project[] = [
 			"Tailwind CSS",
 		],
 		thumbnail: "/projects/thumbnail/mcity-1.png",
-		longThumbnail: "/projects/long/mcity-1.png",
 		images: [
 			"/projects/images/mcity-metaverse-1.png",
 			"/projects/images/mcity-metaverse-2.png",
@@ -281,7 +278,6 @@ export const PROJECTS: Project[] = [
 			"Web3.js",
 		],
 		thumbnail: "/projects/thumbnail/onuschain-1.png",
-		longThumbnail: "/projects/long/onuschain-1.png",
 		images: [
 			"/projects/images/onus-chain-explorer-1.png",
 			"/projects/images/onus-chain-explorer-2.png",
@@ -331,7 +327,6 @@ export const PROJECTS: Project[] = [
 			"NFT Integration",
 		],
 		thumbnail: "/projects/thumbnail/runtogether-1.png",
-		longThumbnail: "/projects/long/runtogether-1.png",
 		images: [
 			"/projects/images/run-together-1.png",
 			"/projects/images/run-together-2.png",
@@ -381,7 +376,6 @@ export const PROJECTS: Project[] = [
 			"Tailwind CSS",
 		],
 		thumbnail: "/projects/thumbnail/animverse-1.png",
-		longThumbnail: "/projects/long/animverse-1.png",
 		images: [
 			"/projects/images/animverse-gamefi-1.png",
 			"/projects/images/animverse-gamefi-2.png",
@@ -432,7 +426,6 @@ export const PROJECTS: Project[] = [
 			"SEO",
 		],
 		thumbnail: "/projects/thumbnail/sonlahpc-1.png",
-		longThumbnail: "/projects/long/sonlahpc-1.png",
 		images: [
 			"/projects/images/sonla-hpc-1.png",
 			"/projects/images/sonla-hpc-2.png",
@@ -482,7 +475,6 @@ export const PROJECTS: Project[] = [
 			"Accessibility",
 		],
 		thumbnail: "/projects/thumbnail/vinhtantpc-1.png",
-		longThumbnail: "/projects/long/vinhtantpc-1.png",
 		images: [
 			"/projects/images/vinhtan-tpc-1.png",
 			"/projects/images/vinhtan-tpc-2.png",
