@@ -235,7 +235,7 @@ function RouteComponent() {
 				<div className="top-0 flex min-h-[calc(100svh-100px)]" id="info">
 					<div className="relative w-full">
 						<div className="mx-auto mb-10 flex max-w-[635px] items-start gap-6">
-							<h1 className="fade-in-later overflow-hidden font-anton text-4xl leading-none opacity-0 md:text-[60px]">
+							<h1 className="fade-in-later overflow-hidden font-changa-one text-4xl leading-none opacity-0 md:text-[60px]">
 								<span className="inline-block">{project.title}</span>
 							</h1>
 
@@ -265,17 +265,19 @@ function RouteComponent() {
 
 						<div className="mx-auto max-w-[635px] space-y-7 pb-20">
 							<div className="fade-in-later">
-								<p className="mb-3 font-anton text-fg/80">Year</p>
+								<p className="mb-3 font-changa-one text-fg/80">Year</p>
 
 								<div className="text-lg">{project.year}</div>
 							</div>
 							<div className="fade-in-later">
-								<p className="mb-3 font-anton text-fore">Tech & Technique</p>
+								<p className="mb-3 font-changa-one text-fore">
+									Tech & Technique
+								</p>
 
 								<div className="text-lg">{project.techStack.join(", ")}</div>
 							</div>
 							<div className="fade-in-later">
-								<p className="mb-3 font-anton text-fore">Description</p>
+								<p className="mb-3 font-changa-one text-fore">Description</p>
 
 								<div className="prose-xl markdown-text text-lg">
 									{parse(project.description)}
@@ -283,7 +285,7 @@ function RouteComponent() {
 							</div>
 							{project.role && (
 								<div className="fade-in-later">
-									<p className="mb-3 font-anton text-fore">My Role</p>
+									<p className="mb-3 font-changa-one text-fore">My Role</p>
 
 									<div className="text-lg">{parse(project.role)}</div>
 								</div>
