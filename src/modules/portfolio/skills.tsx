@@ -62,7 +62,7 @@ const Skills = () => {
 
 				<div className="space-y-20">
 					{Object.entries(MY_STACK).map(([key, value]) => (
-						<div className="grid sm:grid-cols-12" key={key}>
+						<div className="grid gap-8 sm:grid-cols-12" key={key}>
 							<div className="sm:col-span-5">
 								<p className="slide-up font-changa-one text-5xl text-muted-fg uppercase leading-none">
 									{key}
