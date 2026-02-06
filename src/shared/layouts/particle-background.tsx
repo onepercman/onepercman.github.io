@@ -40,7 +40,7 @@ const ParticleBackground = () => {
 			color: 0xffffff,
 		})
 
-		const particlesCount = 2500
+		const particlesCount = 1000
 		const posArray = new Float32Array(particlesCount * 3)
 		for (let i = 0; i < particlesCount * 3; i++) {
 			posArray[i] = (Math.random() - 0.5) * 5 * Math.random()
