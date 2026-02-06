@@ -1,5 +1,5 @@
 import { useGSAP } from "@gsap/react"
-import { Link, useNavigate } from "@tanstack/react-router"
+import { Link, useNavigate, useRouter } from "@tanstack/react-router"
 import gsap from "gsap"
 import type { ComponentProps } from "react"
 
@@ -17,6 +17,7 @@ const TransitionLink = ({
 	...rest
 }: Props) => {
 	const navigate = useNavigate()
+	const router = useRouter()
 
 	const { contextSafe } = useGSAP(() => {})
 
@@ -36,7 +37,7 @@ const TransitionLink = ({
 
 			tl.then(() => {
 				if (back) {
-					navigate({ to: ".." })
+					router.history.back()
 				} else if (href) {
 					navigate({ to: href.toString() })
 				} else if (onClick) {
