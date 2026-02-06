@@ -29,7 +29,7 @@ export const GENERAL_INFO = {
 export const SOCIAL_LINKS = [
 	{ name: "github", url: "https://github.com/onepercman" },
 	{ name: "linkedin", url: "https://www.linkedin.com/in/onepercman" },
-	{ name: "twitter", url: "https://twitter.com/onepercman" },
+	{ name: "x", url: "https://x.com/onepercman" },
 ]
 
 export const MY_STACK = {
