@@ -19,6 +19,131 @@ export const Route = createFileRoute("/projects/$slug")({
 		}
 		return { project }
 	},
+	head: ({ loaderData }) => {
+		if (!loaderData) return { meta: [] }
+
+		const { project } = loaderData
+		const siteUrl = "https://onepercman.com"
+		const projectUrl = `${siteUrl}/projects/${project.slug}`
+
+		// Extract plain text from HTML description
+		const plainDescription = project.description
+			.replace(/<br\s*\/?>/gi, " ")
+			.replace(/<[^>]+>/g, "")
+			.replace(/\s+/g, " ")
+			.trim()
+			.substring(0, 160)
+
+		return {
+			meta: [
+				{ title: `${project.title} | Trung Tran Duy - Frontend Engineer` },
+				{ name: "description", content: plainDescription },
+				{
+					name: "keywords",
+					content: `${project.title}, ${project.techStack.join(", ")}, frontend development, web development, onepercman`,
+				},
+				{ name: "author", content: "Trung Tran Duy (onepercman)" },
+
+				// Open Graph
+				{ property: "og:type", content: "article" },
+				{ property: "og:url", content: projectUrl },
+				{ property: "og:title", content: project.title },
+				{ property: "og:description", content: plainDescription },
+				{ property: "og:image", content: `${siteUrl}${project.thumbnail}` },
+				{ property: "og:image:width", content: "1200" },
+				{ property: "og:image:height", content: "630" },
+				{ property: "og:site_name", content: "onepercman.com" },
+				{
+					property: "article:published_time",
+					content: `${project.year}-01-01`,
+				},
+				{ property: "article:author", content: "Trung Tran Duy" },
+				{
+					property: "article:tag",
+					content: project.techStack.join(", "),
+				},
+
+				// Twitter
+				{ name: "twitter:card", content: "summary_large_image" },
+				{ name: "twitter:url", content: projectUrl },
+				{ name: "twitter:title", content: project.title },
+				{ name: "twitter:description", content: plainDescription },
+				{ name: "twitter:image", content: `${siteUrl}${project.thumbnail}` },
+				{ name: "twitter:creator", content: "@onepercman" },
+
+				// Additional meta
+				{ name: "robots", content: "index, follow" },
+				{ name: "language", content: "en" },
+
+				// Schema.org structured data for Project
+				{
+					"script:ld+json": {
+						"@context": "https://schema.org",
+						"@type": "CreativeWork",
+						name: project.title,
+						description: plainDescription,
+						url: projectUrl,
+						image: `${siteUrl}${project.thumbnail}`,
+						datePublished: `${project.year}-01-01`,
+						author: {
+							"@type": "Person",
+							name: "Trung Tran Duy",
+							alternateName: "onepercman",
+							url: siteUrl,
+						},
+						creator: {
+							"@type": "Person",
+							name: "Trung Tran Duy",
+						},
+						keywords: project.techStack.join(", "),
+						...(project.liveUrl && {
+							workExample: {
+								"@type": "WebSite",
+								url: project.liveUrl,
+							},
+						}),
+						...(project.sourceCode && {
+							codeRepository: project.sourceCode,
+						}),
+					},
+				},
+
+				// BreadcrumbList schema
+				{
+					"script:ld+json": {
+						"@context": "https://schema.org",
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Home",
+								item: siteUrl,
+							},
+							{
+								"@type": "ListItem",
+								position: 2,
+								name: "Projects",
+								item: `${siteUrl}/#projects`,
+							},
+							{
+								"@type": "ListItem",
+								position: 3,
+								name: project.title,
+								item: projectUrl,
+							},
+						],
+					},
+				},
+			],
+			links: [
+				{ rel: "canonical", href: projectUrl },
+				...(project.liveUrl
+					? [{ rel: "alternate", href: project.liveUrl }]
+					: []),
+			],
+		}
+	},
 	staticData: () => ({
 		slugs: PROJECTS.map((project) => project.slug),
 	}),
