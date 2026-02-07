@@ -13,6 +13,38 @@ const config = defineConfig({
 				crawlLinks: true,
 				autoSubfolderIndex: true,
 				concurrency: 10,
+				// Filter out static assets to prevent corruption
+				filter: ({ path }) => {
+					const staticAssetPatterns = [
+						"/projects/images/",
+						"/projects/thumbnail/",
+						"/images/",
+						"/logo/",
+						"/files/",
+					]
+					const imageExtensions = [
+						".png",
+						".jpg",
+						".jpeg",
+						".gif",
+						".svg",
+						".webp",
+						".ico",
+						".pdf",
+					]
+
+					// Exclude paths that start with static asset patterns
+					if (staticAssetPatterns.some((pattern) => path.startsWith(pattern))) {
+						return false
+					}
+
+					// Exclude paths with image/file extensions
+					if (imageExtensions.some((ext) => path.endsWith(ext))) {
+						return false
+					}
+
+					return true
+				},
 			},
 		}),
 		// nitro(),
