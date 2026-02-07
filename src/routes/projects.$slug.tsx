@@ -144,9 +144,9 @@ export const Route = createFileRoute("/projects/$slug")({
 			],
 		}
 	},
-	staticData: () => ({
-		slugs: PROJECTS.map((project) => project.slug),
-	}),
+	staticData: () => {
+		return PROJECTS.map((project) => ({ slug: project.slug }))
+	},
 	component: RouteComponent,
 })
 
@@ -225,7 +225,7 @@ function RouteComponent() {
 			<div className="container" ref={containerRef}>
 				<TransitionLink
 					back
-					href="/"
+					to="/"
 					className="group mb-16 inline-flex h-12 items-center gap-2"
 				>
 					<ArrowLeft className="transition-all duration-300 group-hover:-translate-x-1 group-hover:text-primary" />

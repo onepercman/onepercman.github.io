@@ -86,7 +86,7 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
 
 	return (
 		<TransitionLink
-			href={`/projects/${project.slug}`}
+			to={`/projects/${project.slug}`}
 			className="project-item group first:!pt-0 md:hover:!opacity-100 py-5 leading-none transition-all last:border-none last:pb-0 md:border-b md:group-hover/projects:opacity-30"
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}

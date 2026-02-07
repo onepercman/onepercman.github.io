@@ -8,12 +8,11 @@ import viteTsConfigPaths from "vite-tsconfig-paths"
 const config = defineConfig({
 	plugins: [
 		tanstackStart({
-			spa: {
+			prerender: {
 				enabled: true,
-				prerender: {
-					enabled: true,
-					outputPath: "index.html",
-				},
+				crawlLinks: true,
+				autoSubfolderIndex: true,
+				concurrency: 10,
 			},
 		}),
 		// nitro(),

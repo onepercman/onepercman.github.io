@@ -3,14 +3,15 @@ import { Link, useNavigate, useRouter } from "@tanstack/react-router"
 import gsap from "gsap"
 import type { ComponentProps } from "react"
 
-interface Props extends ComponentProps<typeof Link> {
+interface Props extends Omit<ComponentProps<typeof Link>, "onClick"> {
 	back?: boolean
+	onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
 gsap.registerPlugin(useGSAP)
 
 const TransitionLink = ({
-	href,
+	to,
 	onClick,
 	children,
 	back = false,
@@ -38,8 +39,8 @@ const TransitionLink = ({
 			tl.then(() => {
 				if (back) {
 					router.history.back()
-				} else if (href) {
-					navigate({ to: href.toString() })
+				} else if (to) {
+					navigate({ to: to.toString() })
 				} else if (onClick) {
 					onClick(e)
 				}
@@ -48,7 +49,7 @@ const TransitionLink = ({
 	)
 
 	return (
-		<Link href={href} {...rest} onClick={handleLinkClick}>
+		<Link to={to} {...rest} onClick={handleLinkClick}>
 			{children}
 		</Link>
 	)
