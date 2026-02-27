@@ -1,6 +1,7 @@
 import { TanStackDevtools } from "@tanstack/react-devtools"
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
+import { environment } from "~/shared/config/environment"
 import MainLayout from "~/shared/layouts/main-layout"
 import { ThemeProvider } from "~/shared/providers/theme-provider"
 import appCss from "../styles.css?url"
@@ -180,6 +181,24 @@ export const Route = createRootRoute({
 				{ rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
 				{ rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
 			],
+			scripts: environment.GA_MEASUREMENT_ID
+				? [
+						{
+							type: "text/javascript",
+							src: `https://www.googletagmanager.com/gtag/js?id=${environment.GA_MEASUREMENT_ID}`,
+							async: true,
+						},
+						{
+							type: "text/javascript",
+							children: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${environment.GA_MEASUREMENT_ID}');
+              `,
+						},
+					]
+				: [],
 		}
 	},
 
