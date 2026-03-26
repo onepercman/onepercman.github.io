@@ -241,55 +241,6 @@ export const PROJECTS: Project[] = [
 		liveUrl: "https://mcity.net",
 	},
 	{
-		title: "ONUS Chain Block Explorer",
-		slug: "onus-chain-explorer",
-		year: 2023,
-		description: `
-      A production-ready block explorer for ONUS Chain (Layer-2 on BSC), providing comprehensive on-chain data visualization.<br/><br/>
-
-      Technical Work:<br/>
-      <ul>
-        <li>Researched and customized Blockscout open-source codebase</li>
-        <li>Implemented block and transaction browsing</li>
-        <li>Built address and smart contract inspection tools</li>
-        <li>Created network activity dashboards</li>
-        <li>Optimized for large-scale blockchain data</li>
-      </ul><br/>
-
-      Deliverables:
-      <ul>
-        <li>Full-featured block explorer</li>
-        <li>Real-time network statistics</li>
-        <li>Smart contract verification interface</li>
-        <li>Production deployment and maintenance</li>
-      </ul>
-      `,
-		role: `
-      Frontend Lead at Moonlab<br/>
-      <ul>
-        <li>Owned frontend for block explorer</li>
-        <li>Customized Blockscout for ONUS Chain</li>
-        <li>Implemented custom features and optimizations</li>
-        <li>Delivered production-ready explorer</li>
-      </ul>
-      `,
-		techStack: [
-			"React",
-			"TypeScript",
-			"Blockscout",
-			"Elixir/Phoenix",
-			"PostgreSQL",
-			"Web3.js",
-		],
-		thumbnail: "/projects/thumbnail/onuschain-1.png",
-		images: [
-			"/projects/images/onuschain-1.png",
-			"/projects/images/onuschain-2.png",
-			"/projects/images/onuschain-3.png",
-		],
-		liveUrl: "https://onuschain.io",
-	},
-	{
 		title: "Run Together (Move-to-Earn)",
 		slug: "run-together",
 		year: 2022,
@@ -501,7 +452,7 @@ export const MY_EXPERIENCE = [
 		company: "Moonlab",
 		duration: "Apr 2022 - Aug 2023",
 		description:
-			"First formal Frontend Lead role. Shared ownership of codebase, made stack decisions, established coding standards. Mentored two interns who became core engineers. Led: Run Together (Move-to-Earn), ONUS Chain Explorer, Mcity (Metaverse).",
+			"First formal Frontend Lead role. Shared ownership of codebase, made stack decisions, established coding standards. Mentored two interns who became core engineers. Led: Run Together (Move-to-Earn), Mcity (Metaverse).",
 	},
 	{
 		title: "Frontend Engineer (Intern → Junior)",
