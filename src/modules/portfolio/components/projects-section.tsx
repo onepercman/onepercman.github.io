@@ -1,6 +1,6 @@
 "use client"
 
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import { cn, useScrollFadeIn, useScrollStagger } from "~/shared/utils"
 import type { Project } from "../portfolio-types"
 
@@ -41,7 +41,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 			{/* Projects Grid */}
 			<div
 				ref={projectsRef as React.RefObject<HTMLDivElement>}
-				className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8"
+				className="mx-auto grid max-w-5xl grid-cols-1 gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8"
 			>
 				{projects.map((project, index) => (
 					<article key={project.id} className="group flex h-full flex-col">
@@ -60,7 +60,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 								<h3 className="line-clamp-2 min-w-0 flex-1 font-bold text-base text-fg tracking-tight sm:text-lg md:text-2xl lg:text-2xl min-[380px]:line-clamp-1">
 									{project.title}
 								</h3>
-								<div className="flex shrink-0 items-center gap-2 self-start opacity-100 transition-opacity duration-300 xl:opacity-0 xl:group-hover:opacity-100 min-[380px]:self-auto">
+								{/* <div className="flex shrink-0 items-center gap-2 self-start opacity-100 transition-opacity duration-300 xl:opacity-0 xl:group-hover:opacity-100 min-[380px]:self-auto">
 									<a
 										href={project.link}
 										target="_blank"
@@ -80,7 +80,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 										<span className="relative z-10 hidden sm:inline">Star</span>
 										<span className="relative z-10 sm:hidden">Star</span>
 									</a>
-								</div>
+								</div> */}
 							</div>
 						</header>
 
@@ -105,7 +105,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
 								{/* Description */}
 								<div className="relative z-10 shrink-0 px-4 pt-5 md:px-8 md:pt-8">
-									<p className="line-clamp-3 max-w-2xl text-pretty font-medium text-[11px] text-white/90 drop-shadow-sm sm:text-xs md:line-clamp-4 md:text-xl lg:text-lg">
+									<p className="line-clamp-3 max-w-2xl text-pretty font-medium text-[11px] text-white/90 drop-shadow-sm sm:text-xs md:line-clamp-4">
 										{project.description}
 									</p>
 								</div>
