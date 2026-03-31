@@ -12,6 +12,10 @@ const config = defineConfig({
 				crawlLinks: true,
 				autoSubfolderIndex: true,
 				concurrency: 10,
+				filter: (args) => {
+					// Exclude PDF files from prerendering
+					return !args.path.endsWith('.pdf')
+				},
 			},
 		}),
 		viteReact(),
