@@ -9,6 +9,7 @@ import {
 	GraduationCap,
 	Mail,
 	MapPin,
+	Send,
 	Sparkles,
 	TrendingUp,
 } from "lucide-react"
@@ -19,6 +20,48 @@ import type { AboutInfo, ContactInfo } from "../portfolio-types"
 interface AboutSectionProps {
 	about: AboutInfo
 	contact: ContactInfo
+}
+
+// Custom icon components for social media
+const GithubIcon = ({ className }: { className?: string }) => (
+	<svg
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		className={className}
+	>
+		<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+		<path d="M9 18c-4.51 2-5-2-7-2" />
+	</svg>
+)
+
+const LinkedinIcon = ({ className }: { className?: string }) => (
+	<svg
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		className={className}
+	>
+		<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+		<rect width="4" height="12" x="2" y="9" />
+		<circle cx="4" cy="4" r="2" />
+	</svg>
+)
+
+// Helper to get the correct icon component based on icon name
+const getIconComponent = (iconName: string) => {
+	const icons: Record<string, React.ComponentType<{ className?: string }>> = {
+		github: GithubIcon,
+		linkedin: LinkedinIcon,
+		send: Send,
+	}
+	return icons[iconName.toLowerCase()] || Mail
 }
 
 export function AboutSection({ about, contact }: AboutSectionProps) {
@@ -539,8 +582,8 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 
 				{/* Row 5: Location & Contact + Status */}
 				{/* Location, Contact & CV Combined */}
-				<div className="group relative col-span-2 row-span-1 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 backdrop-blur-md transition-all hover:shadow-lg hover:shadow-primary/5 md:col-span-4 md:row-span-1">
-					<div className="flex h-full items-center justify-between gap-3 p-3">
+				<div className="group relative col-span-4 row-span-1 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 backdrop-blur-md transition-all hover:shadow-lg hover:shadow-primary/5 md:col-span-4 md:row-span-1">
+					<div className="flex h-full flex-col items-start justify-between gap-2 p-3 md:flex-row md:items-center md:gap-3">
 						<div className="flex items-center gap-3">
 							<div className="flex items-center gap-1.5">
 								<MapPin className="h-2.5 w-2.5 text-primary" />
@@ -554,7 +597,7 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 								</div>
 							</div>
 						</div>
-						<div className="flex items-center gap-2">
+						<div className="flex items-center gap-1.5 md:gap-2">
 							<a
 								href={`mailto:${contact.email}`}
 								className="flex items-center gap-1 rounded-lg border border-border/50 bg-muted/20 px-2 py-1 transition-all hover:border-primary hover:bg-primary/5"
@@ -564,20 +607,21 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 									Email
 								</span>
 							</a>
-							{contact.socials.slice(0, 2).map((social) => (
-								<a
-									key={social.name}
-									href={social.url}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/50 bg-muted/20 transition-all hover:scale-110 hover:border-primary hover:bg-primary/5"
-									title={social.name}
-								>
-									<span className="text-[8px] text-primary">
-										{social.name.charAt(0).toUpperCase()}
-									</span>
-								</a>
-							))}
+							{contact.socials.map((social) => {
+								const IconComponent = getIconComponent(social.icon)
+								return (
+									<a
+										key={social.name}
+										href={social.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/50 bg-muted/20 transition-all hover:scale-110 hover:border-primary hover:bg-primary/5"
+										title={social.name}
+									>
+										<IconComponent className="h-3 w-3 text-primary" />
+									</a>
+								)
+							})}
 							<a
 								href="/cv.pdf"
 								download
@@ -593,7 +637,7 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 				</div>
 
 				{/* Status */}
-				<div className="group relative col-span-2 row-span-1 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md transition-all hover:shadow-green-500/10 hover:shadow-lg md:col-span-2 md:row-span-1">
+				<div className="group relative col-span-4 row-span-1 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md transition-all hover:shadow-green-500/10 hover:shadow-lg md:col-span-2 md:row-span-1">
 					<div className="flex h-full flex-col justify-between">
 						<h3 className="font-bold text-[9px] text-fg uppercase tracking-wide opacity-70">
 							Status
