@@ -114,6 +114,69 @@ export const projects: Project[] = [
 		gradientTo: "rgba(219, 39, 119, 0.9)",
 		layout: "desktop",
 	},
+	{
+		id: "7",
+		title: "Tailwind Color Schemes Plugin",
+		description:
+			"Open source Tailwind CSS plugin that provides a flexible way to define and use color schemes. Supports global colors, scheme-specific colors with optional opacity, and seamless integration with Tailwind's design system. Published on npm for the developer community.",
+		image:
+			"https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600&h=1000&fit=crop&q=80",
+		category: "Open Source / Developer Tools",
+		year: "2024",
+		role: "Creator & Maintainer",
+		tags: ["Tailwind CSS", "Plugin", "TypeScript", "CSS", "npm"],
+		link: "https://github.com/onepercman/tailwindcss-color-schemes",
+		gradientFrom: "rgba(56, 189, 248, 0.9)",
+		gradientTo: "rgba(99, 102, 241, 0.9)",
+		layout: "desktop",
+	},
+	{
+		id: "8",
+		title: "use-composed-refs",
+		description:
+			"Lightweight utility library for managing multiple refs in reusable React components with TypeScript support. Simplifies ref handling by providing an easy-to-use hook and utility function, enabling better ref management and flexibility in complex component structures.",
+		image:
+			"https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1600&h=1000&fit=crop&q=80",
+		category: "Open Source / React Library",
+		year: "2024",
+		role: "Creator & Maintainer",
+		tags: ["React", "TypeScript", "Hooks", "Refs", "npm"],
+		link: "https://github.com/onepercman/use-composed-refs",
+		gradientFrom: "rgba(16, 185, 129, 0.9)",
+		gradientTo: "rgba(5, 150, 105, 0.9)",
+		layout: "desktop",
+	},
+	{
+		id: "9",
+		title: "use-valtio-store",
+		description:
+			"React hook for managing state using Valtio with support for persistent states via localStorage and sessionStorage. Provides a simple and powerful way to handle state management with built-in persistence capabilities for React applications.",
+		image:
+			"https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&h=1000&fit=crop&q=80",
+		category: "Open Source / State Management",
+		year: "2024",
+		role: "Creator & Maintainer",
+		tags: ["React", "Valtio", "State Management", "TypeScript", "npm"],
+		link: "https://github.com/onepercman/use-valtio-store",
+		gradientFrom: "rgba(168, 85, 247, 0.9)",
+		gradientTo: "rgba(236, 72, 153, 0.9)",
+		layout: "desktop",
+	},
+	{
+		id: "10",
+		title: "TanStack Start Starter",
+		description:
+			"Production-ready starter template for TanStack Start with modern React development setup. Features full-stack TypeScript, file-based routing, SSR support, and pre-configured tooling for building high-performance web applications with TanStack ecosystem.",
+		image: "https://nikuscs.com/_astro/cover.DNBtBKaU_1XkO7C.webp",
+		category: "Open Source / Starter Template",
+		year: "2024",
+		role: "Creator & Maintainer",
+		tags: ["TanStack Start", "React", "TypeScript", "SSR", "Full-stack"],
+		link: "https://github.com/onepercman/tanstack-start-starter",
+		gradientFrom: "rgba(249, 115, 22, 0.9)",
+		gradientTo: "rgba(234, 179, 8, 0.9)",
+		layout: "desktop",
+	},
 ]
 
 export const aboutData: AboutInfo = {
