@@ -1,5 +1,6 @@
 "use client"
 
+import gsap from "gsap"
 import {
 	Briefcase,
 	Code2,
@@ -11,7 +12,7 @@ import {
 	Sparkles,
 	TrendingUp,
 } from "lucide-react"
-import { useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { useScrollStagger } from "~/shared/utils"
 import type { AboutInfo, ContactInfo } from "../portfolio-types"
 
@@ -21,36 +22,128 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ about, contact }: AboutSectionProps) {
-	const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 })
-	const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set())
 	const imageRef = useRef<HTMLDivElement>(null)
-	const gridRef = useScrollStagger({ stagger: 0.08, duration: 0.5 })
+	const gridRef = useScrollStagger({
+		stagger: 0.04,
+		duration: 0.4,
+		start: "top 75%",
+	})
+	const experienceRef = useRef<HTMLDivElement>(null)
+	const educationRef = useRef<HTMLDivElement>(null)
+	const projectsRef = useRef<HTMLDivElement>(null)
+	const techStackRef = useRef<HTMLDivElement>(null)
 
 	const animatedName = (about.title || "YOUR NAME").split(" ")
 
+	// Use GSAP for smooth mouse tracking without re-renders
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (!imageRef.current) return
 		const rect = imageRef.current.getBoundingClientRect()
 		const x = (e.clientX - rect.left - rect.width / 2) / rect.width
 		const y = (e.clientY - rect.top - rect.height / 2) / rect.height
-		setImagePosition({ x: x * 15, y: y * 15 })
+
+		// Use GSAP to animate - no state updates, no re-renders
+		const images = imageRef.current.querySelectorAll("img")
+		images.forEach((img) => {
+			gsap.to(img, {
+				x: x * 15,
+				y: y * 15,
+				duration: 0.3,
+				ease: "power2.out",
+			})
+		})
 	}
 
 	const handleMouseLeave = () => {
-		setImagePosition({ x: 0, y: 0 })
-	}
-
-	const toggleFlip = (cardId: string) => {
-		setFlippedCards((prev) => {
-			const newSet = new Set(prev)
-			if (newSet.has(cardId)) {
-				newSet.delete(cardId)
-			} else {
-				newSet.add(cardId)
-			}
-			return newSet
+		if (!imageRef.current) return
+		const images = imageRef.current.querySelectorAll("img")
+		images.forEach((img) => {
+			gsap.to(img, {
+				x: 0,
+				y: 0,
+				duration: 0.5,
+				ease: "power2.out",
+			})
 		})
 	}
+
+	// Auto-cycle animations for cards - pause on hover, click to toggle
+	useEffect(() => {
+		const cards = [
+			{ ref: experienceRef, duration: 3 },
+			{ ref: educationRef, duration: 3 },
+			{ ref: projectsRef, duration: 3 },
+			{ ref: techStackRef, duration: 3 },
+		]
+
+		const timelines: gsap.core.Timeline[] = []
+		const cleanup: (() => void)[] = []
+
+		cards.forEach(({ ref, duration }) => {
+			if (!ref.current) return
+
+			const content = ref.current.querySelector(".slide-content")
+			if (!content) return
+
+			const tl = gsap.timeline({ repeat: -1, repeatDelay: duration })
+
+			tl.to(content, {
+				y: "-50%",
+				duration: 0.6,
+				ease: "power2.inOut",
+				delay: duration,
+			}).to(content, {
+				y: "0%",
+				duration: 0.6,
+				ease: "power2.inOut",
+				delay: duration,
+			})
+
+			// Pause on hover
+			const handleMouseEnter = () => tl.pause()
+			const handleMouseLeave = () => tl.resume()
+
+			// Click to toggle content immediately
+			const handleClick = () => {
+				const currentY = gsap.getProperty(content, "y")
+				const targetY = currentY === "0%" || currentY === 0 ? "-50%" : "0%"
+
+				// Stop timeline temporarily
+				tl.pause()
+
+				// Animate to opposite state
+				gsap.to(content, {
+					y: targetY,
+					duration: 0.4,
+					ease: "power2.inOut",
+					onComplete: () => {
+						// Resume timeline from new position
+						tl.resume()
+					},
+				})
+			}
+
+			ref.current.addEventListener("mouseenter", handleMouseEnter)
+			ref.current.addEventListener("mouseleave", handleMouseLeave)
+			ref.current.addEventListener("click", handleClick)
+
+			timelines.push(tl)
+			cleanup.push(() => {
+				ref.current?.removeEventListener("mouseenter", handleMouseEnter)
+				ref.current?.removeEventListener("mouseleave", handleMouseLeave)
+				ref.current?.removeEventListener("click", handleClick)
+			})
+		})
+
+		return () => {
+			for (const tl of timelines) {
+				tl.kill()
+			}
+			for (const fn of cleanup) {
+				fn()
+			}
+		}
+	}, [])
 
 	return (
 		<section
@@ -102,19 +195,13 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 					<img
 						alt="Avatar"
 						src={about.images?.[0] || about.image}
-						className="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover/portrait:opacity-0"
-						style={{
-							transform: `translate(${imagePosition.x}px, ${imagePosition.y}px) scale(1.1)`,
-						}}
+						className="absolute inset-0 h-full w-full scale-110 object-cover transition-opacity duration-500 group-hover/portrait:opacity-0"
 					/>
 					{about.images?.[1] && (
 						<img
 							alt="Portrait"
 							src={about.images[1]}
-							className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-500 group-hover/portrait:opacity-100"
-							style={{
-								transform: `translate(${imagePosition.x}px, ${imagePosition.y}px) scale(1.1)`,
-							}}
+							className="absolute inset-0 h-full w-full scale-110 object-cover opacity-0 transition-opacity duration-500 group-hover/portrait:opacity-100"
 						/>
 					)}
 				</div>
@@ -163,21 +250,16 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 				</div>
 
 				{/* Row 3: Experience + Education + Current Focus */}
-				{/* Experience - Flippable */}
+				{/* Experience - Auto Slide */}
 				<div
-					className="group relative col-span-2 row-span-1 [perspective:1000px] md:col-span-2 md:row-span-1"
-					onClick={() => toggleFlip("experience")}
+					ref={experienceRef}
+					className="group relative col-span-2 row-span-1 cursor-pointer overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md transition-all duration-300 hover:border-primary/50 md:col-span-2 md:row-span-1"
 				>
-					<div
-						className={`relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] ${
-							flippedCards.has("experience")
-								? "[transform:rotateY(180deg)]"
-								: ""
-						}`}
-					>
-						{/* Front */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md [backface-visibility:hidden]">
-							<div className="flex h-full flex-col justify-between">
+					<div className="relative h-full w-full overflow-hidden">
+						{/* Content Container - Auto slides vertically */}
+						<div className="slide-content flex h-[200%] flex-col">
+							{/* Front View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between">
 								<div className="flex items-center gap-1.5">
 									<Briefcase className="h-2.5 w-2.5 text-primary" />
 									<h3 className="font-bold text-[9px] text-fg uppercase tracking-wide opacity-70">
@@ -189,14 +271,12 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 										Frontend Lead · Solo Builder
 									</span>
 									<p className="text-[8px] text-muted-fg leading-tight opacity-70">
-										Tap to see details →
+										Auto-cycling...
 									</p>
 								</div>
 							</div>
-						</div>
-						{/* Back */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-primary/50 bg-linear-to-br from-primary/10 to-bg p-3 backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)]">
-							<div className="flex h-full flex-col justify-between">
+							{/* Details View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between">
 								<h3 className="font-bold text-[9px] text-primary uppercase tracking-wide">
 									Experience Details
 								</h3>
@@ -223,19 +303,15 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 					</div>
 				</div>
 
-				{/* Education - Flippable */}
+				{/* Education - Auto Slide */}
 				<div
-					className="group relative col-span-2 row-span-1 [perspective:1000px] md:col-span-2 md:row-span-1"
-					onClick={() => toggleFlip("education")}
+					ref={educationRef}
+					className="group relative col-span-2 row-span-1 cursor-pointer overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md transition-all duration-300 hover:border-primary/50 md:col-span-2 md:row-span-1"
 				>
-					<div
-						className={`relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] ${
-							flippedCards.has("education") ? "[transform:rotateY(180deg)]" : ""
-						}`}
-					>
-						{/* Front */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md [backface-visibility:hidden]">
-							<div className="flex h-full flex-col justify-between">
+					<div className="relative h-full w-full overflow-hidden">
+						<div className="slide-content flex h-[200%] flex-col">
+							{/* Front View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between">
 								<div className="flex items-center gap-1.5">
 									<GraduationCap className="h-2.5 w-2.5 text-primary" />
 									<h3 className="font-bold text-[9px] text-fg uppercase tracking-wide opacity-70">
@@ -247,14 +323,12 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 										Software Engineering
 									</span>
 									<p className="text-[8px] text-muted-fg leading-tight opacity-70">
-										Tap to see details →
+										Auto-cycling...
 									</p>
 								</div>
 							</div>
-						</div>
-						{/* Back */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-primary/50 bg-linear-to-br from-primary/10 to-bg p-3 backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)]">
-							<div className="flex h-full flex-col justify-between">
+							{/* Details View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between">
 								<h3 className="font-bold text-[9px] text-primary uppercase tracking-wide">
 									Education Details
 								</h3>
@@ -294,19 +368,15 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 					</div>
 				</div>
 
-				{/* Projects - Flippable */}
+				{/* Projects - Auto Slide */}
 				<div
-					className="group relative col-span-4 row-span-1 [perspective:1000px] md:col-span-2 md:row-span-1"
-					onClick={() => toggleFlip("projects")}
+					ref={projectsRef}
+					className="group relative col-span-4 row-span-1 cursor-pointer overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md transition-all duration-300 hover:border-primary/50 md:col-span-2 md:row-span-1"
 				>
-					<div
-						className={`relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] ${
-							flippedCards.has("projects") ? "[transform:rotateY(180deg)]" : ""
-						}`}
-					>
-						{/* Front */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-3 backdrop-blur-md [backface-visibility:hidden]">
-							<div className="flex h-full flex-col justify-between">
+					<div className="relative h-full w-full overflow-hidden">
+						<div className="slide-content flex h-[200%] flex-col">
+							{/* Front View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between">
 								<h3 className="font-bold text-[9px] text-fg uppercase tracking-wide opacity-70">
 									Projects
 								</h3>
@@ -315,14 +385,12 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 										Analytics · UI Libraries
 									</p>
 									<p className="text-[8px] text-muted-fg leading-tight opacity-70">
-										Tap to see details →
+										Auto-cycling...
 									</p>
 								</div>
 							</div>
-						</div>
-						{/* Back */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-primary/50 bg-linear-to-br from-primary/10 to-bg p-3 backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)]">
-							<div className="flex h-full flex-col justify-between">
+							{/* Details View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between">
 								<h3 className="font-bold text-[9px] text-primary uppercase tracking-wide">
 									Recent Projects
 								</h3>
@@ -341,19 +409,15 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 				</div>
 
 				{/* Row 4-5: Tech Stack (Combined) */}
-				{/* Tech Stack - Flippable */}
+				{/* Tech Stack - Auto Slide */}
 				<div
-					className="group relative col-span-4 row-span-2 [perspective:1000px] md:col-span-6 md:row-span-1"
-					onClick={() => toggleFlip("techstack")}
+					ref={techStackRef}
+					className="group relative col-span-4 row-span-2 cursor-pointer overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-4 backdrop-blur-md transition-all duration-300 hover:border-primary/50 md:col-span-6 md:row-span-1"
 				>
-					<div
-						className={`relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] ${
-							flippedCards.has("techstack") ? "[transform:rotateY(180deg)]" : ""
-						}`}
-					>
-						{/* Front */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-border bg-linear-to-br from-bg to-muted/20 p-4 backdrop-blur-md [backface-visibility:hidden]">
-							<div className="flex h-full flex-col justify-between gap-3 md:flex-row md:items-center">
+					<div className="relative h-full w-full overflow-hidden">
+						<div className="slide-content flex h-[200%] flex-col">
+							{/* Front View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between gap-3 md:flex-row md:items-center">
 								{/* Frontend */}
 								<div className="flex flex-1 flex-col gap-2">
 									<div className="flex items-center gap-1.5">
@@ -406,10 +470,8 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 									</div>
 								</div>
 							</div>
-						</div>
-						{/* Back */}
-						<div className="absolute inset-0 overflow-hidden rounded-3xl border border-primary/50 bg-linear-to-br from-primary/10 to-bg p-4 backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)]">
-							<div className="flex h-full flex-col justify-between gap-2">
+							{/* Details View */}
+							<div className="flex h-1/2 shrink-0 flex-col justify-between gap-2">
 								<h3 className="font-bold text-[9px] text-primary uppercase tracking-wide">
 									Full Tech Stack
 								</h3>
@@ -458,7 +520,7 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 								</p>
 								<p className="text-[9px] text-fg">
 									<span className="font-semibold">English</span>{" "}
-									<span className="text-muted-fg opacity-60">· Pro</span>
+									<span className="text-muted-fg opacity-60">· Basic</span>
 								</p>
 							</div>
 						</div>

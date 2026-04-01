@@ -2,7 +2,7 @@
 
 import type { LucideIcon } from "lucide-react"
 import { Code, ExternalLink, Linkedin, Mail } from "lucide-react"
-import { cn } from "~/shared/utils"
+import { cn, useScrollReveal, useScrollStagger } from "~/shared/utils"
 import type { OtherItem } from "../portfolio-types"
 
 const iconMap: Record<string, LucideIcon> = {
@@ -16,6 +16,9 @@ interface OtherSectionProps {
 }
 
 export function OtherSection({ items }: OtherSectionProps) {
+	const headerRef = useScrollReveal({ duration: 0.5, start: "top 80%" })
+	const cardsRef = useScrollStagger({ stagger: 0.1, duration: 0.4 })
+
 	return (
 		<section
 			id="other"
@@ -23,7 +26,10 @@ export function OtherSection({ items }: OtherSectionProps) {
 			style={{ scrollMarginTop: "120px" }}
 		>
 			<div className="section">
-				<div className="mb-16 text-center">
+				<div
+					ref={headerRef as React.RefObject<HTMLDivElement>}
+					className="mb-16 text-center"
+				>
 					<h2 className="mb-4 text-pretty px-2 font-bold text-3xl sm:text-5xl md:text-6xl">
 						Get in{" "}
 						<span className="animate-gradient bg-linear-to-r from-primary via-pink-500 to-violet-500 bg-clip-text text-transparent">
@@ -35,7 +41,10 @@ export function OtherSection({ items }: OtherSectionProps) {
 					</p>
 				</div>
 
-				<div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-4 sm:grid-cols-3">
+				<div
+					ref={cardsRef as React.RefObject<HTMLDivElement>}
+					className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-4 sm:grid-cols-3"
+				>
 					{items.map((item) => {
 						const Icon = iconMap[item.icon] || Code
 						const isExternal = item.isExternal || item.href.startsWith("http")

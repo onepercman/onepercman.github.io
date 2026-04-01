@@ -1,7 +1,7 @@
 "use client"
 
 import { ExternalLink } from "lucide-react"
-import { cn, useScrollFadeIn, useScrollStagger } from "~/shared/utils"
+import { cn, useScrollReveal, useScrollStagger } from "~/shared/utils"
 import type { Project } from "../portfolio-types"
 
 interface ProjectsSectionProps {
@@ -9,8 +9,8 @@ interface ProjectsSectionProps {
 }
 
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
-	const headerRef = useScrollFadeIn({ duration: 1 })
-	const projectsRef = useScrollStagger({ stagger: 0.2, duration: 0.8 })
+	const headerRef = useScrollReveal({ duration: 0.5, start: "top 80%" })
+	const projectsRef = useScrollStagger({ stagger: 0.1, duration: 0.5 })
 
 	return (
 		<section
@@ -140,7 +140,15 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 			</div>
 
 			{/* GitHub Link */}
-			<div className="mt-16 text-center">
+			<div
+				ref={
+					useScrollReveal({
+						duration: 0.4,
+						start: "top 85%",
+					}) as React.RefObject<HTMLDivElement>
+				}
+				className="mt-16 text-center"
+			>
 				<a
 					href="https://github.com/onepercman"
 					target="_blank"

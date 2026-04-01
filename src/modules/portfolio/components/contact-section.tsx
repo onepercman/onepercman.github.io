@@ -1,7 +1,7 @@
 "use client"
 
 import { Download, Github, Linkedin, Mail, Send } from "lucide-react"
-import { cn, useScrollFadeIn, useScrollStagger } from "~/shared/utils"
+import { cn, useScrollReveal, useScrollStagger } from "~/shared/utils"
 import type { ContactInfo } from "../portfolio-types"
 
 interface ContactSectionProps {
@@ -16,8 +16,8 @@ const iconMap = {
 }
 
 export function ContactSection({ contact }: ContactSectionProps) {
-	const headerRef = useScrollFadeIn({ duration: 1 })
-	const cardsRef = useScrollStagger({ stagger: 0.15, duration: 0.7 })
+	const headerRef = useScrollReveal({ duration: 0.5, start: "top 75%" })
+	const cardsRef = useScrollStagger({ stagger: 0.08, duration: 0.4 })
 
 	return (
 		<section
@@ -99,7 +99,15 @@ export function ContactSection({ contact }: ContactSectionProps) {
 				</div>
 
 				{/* CV Download CTA */}
-				<div className="mt-12 text-center">
+				<div
+					ref={
+						useScrollReveal({
+							duration: 0.4,
+							start: "top 85%",
+						}) as React.RefObject<HTMLDivElement>
+					}
+					className="mt-12 text-center"
+				>
 					<a
 						href="/cv.pdf"
 						download

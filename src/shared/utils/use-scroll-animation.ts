@@ -149,3 +149,95 @@ export function useScrollParallax(speed = 0.5) {
 
 	return ref
 }
+
+/**
+ * Hook for reveal animation on scroll - fade in once when entering viewport
+ * Perfect for modern scroll-based reveals
+ */
+export function useScrollReveal(options: ScrollAnimationOptions = {}) {
+	const ref = useRef<HTMLElement>(null)
+
+	useEffect(() => {
+		if (!ref.current) return
+
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches
+
+		if (prefersReducedMotion) {
+			gsap.set(ref.current, { opacity: 1, y: 0 })
+			return
+		}
+
+		const {
+			delay = 0,
+			duration = 0.5,
+			ease = "power2.out",
+			start = "top 85%",
+		} = options
+
+		// Set initial state
+		gsap.set(ref.current, {
+			opacity: 0,
+			y: 30,
+		})
+
+		// Animate on scroll - only once
+		gsap.to(ref.current, {
+			opacity: 1,
+			y: 0,
+			duration,
+			delay,
+			ease,
+			scrollTrigger: {
+				trigger: ref.current,
+				start,
+				once: true,
+			},
+		})
+	}, [options])
+
+	return ref
+}
+
+/**
+ * Hook for creating GSAP timeline animations on scroll
+ * Perfect for complex multi-step animations - runs only once
+ */
+export function useScrollTimeline(
+	animationFn: (tl: gsap.core.Timeline, element: HTMLElement) => void,
+	options: ScrollAnimationOptions = {},
+) {
+	const ref = useRef<HTMLElement>(null)
+
+	useEffect(() => {
+		if (!ref.current) return
+
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches
+
+		if (prefersReducedMotion) return
+
+		const { start = "top 80%", scrub = false } = options
+
+		// Create timeline with once: true
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ref.current,
+				start,
+				scrub,
+				once: true,
+			},
+		})
+
+		// Execute custom animation function
+		animationFn(tl, ref.current)
+
+		return () => {
+			tl.kill()
+		}
+	}, [animationFn, options])
+
+	return ref
+}
