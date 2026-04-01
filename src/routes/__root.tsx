@@ -77,7 +77,7 @@ export const Route = createRootRoute({
 				},
 				{
 					name: "twitter:image",
-					content: "/og-image.png",
+					content: "/thumbnail.png",
 				},
 				{ name: "twitter:site", content: "@onepercman" },
 				{ name: "twitter:creator", content: "@onepercman" },
@@ -106,7 +106,7 @@ export const Route = createRootRoute({
 						description:
 							"Fullstack Developer with 5+ years of experience building complex frontend systems across enterprise, consumer, and fintech products",
 						url: "https://onepercman.github.io",
-						image: "/og-image.png",
+						image: "/thumbnail.png",
 						email: "onepercman@gmail.com",
 						sameAs: [
 							"https://github.com/onepercman",
@@ -149,6 +149,10 @@ export const Route = createRootRoute({
 				{
 					rel: "stylesheet",
 					href: appCss,
+				},
+				{
+					rel: "canonical",
+					href: "https://onepercman.github.io",
 				},
 				{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 				{

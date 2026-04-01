@@ -1,7 +1,7 @@
 {
-	"name": "",
-	"short_name": "",
-	"description": "",
+	"name": "onepercman | Fullstack Developer",
+	"short_name": "onepercman",
+	"description": "Fullstack Developer with 5+ years building complex frontend systems across enterprise, consumer, and fintech products. Expert in React, TypeScript, Next.js, Node.js, Flutter, and Go.",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#ffffff",
