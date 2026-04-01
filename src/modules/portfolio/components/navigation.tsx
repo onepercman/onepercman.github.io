@@ -21,7 +21,7 @@ interface NavigationProps {
 
 export function Navigation({
 	ctaText = "Book a Call",
-	ctaLink = "#contact",
+	ctaLink = "#other",
 	onThemeToggle,
 	theme = "dark",
 }: NavigationProps) {
