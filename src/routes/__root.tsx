@@ -7,7 +7,6 @@ import {
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { AnimatedBackground } from "~/shared/components/animated-background"
-import { environment } from "~/shared/config/environment"
 import { ThemeProvider } from "~/shared/providers/theme-provider"
 import appCss from "../styles.css?url"
 
@@ -89,12 +88,6 @@ export const Route = createRootRoute({
 				{ name: "apple-mobile-web-app-status-bar-style", content: "default" },
 				{ name: "apple-mobile-web-app-title", content: "onepercman" },
 				{ name: "mobile-web-app-capable", content: "yes" },
-
-				// Verification
-				{
-					name: "google-site-verification",
-					content: "your-google-verification-code",
-				},
 
 				// Schema.org structured data
 				{
@@ -202,24 +195,6 @@ export const Route = createRootRoute({
 				{ rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
 				{ rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
 			],
-			scripts: environment.GA_MEASUREMENT_ID
-				? [
-						{
-							type: "text/javascript",
-							src: `https://www.googletagmanager.com/gtag/js?id=${environment.GA_MEASUREMENT_ID}`,
-							async: true,
-						},
-						{
-							type: "text/javascript",
-							children: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${environment.GA_MEASUREMENT_ID}');
-              `,
-						},
-					]
-				: [],
 		}
 	},
 
