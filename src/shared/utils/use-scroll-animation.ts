@@ -1,6 +1,7 @@
+import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
@@ -23,47 +24,50 @@ interface ScrollAnimationOptions {
 export function useScrollFadeIn(options: ScrollAnimationOptions = {}) {
 	const ref = useRef<HTMLElement>(null)
 
-	useEffect(() => {
-		if (!ref.current) return
+	useGSAP(
+		() => {
+			if (!ref.current) return
 
-		// Check for reduced motion preference
-		const prefersReducedMotion = window.matchMedia(
-			"(prefers-reduced-motion: reduce)",
-		).matches
+			// Check for reduced motion preference
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches
 
-		if (prefersReducedMotion) {
-			// Skip animations if user prefers reduced motion
-			gsap.set(ref.current, { opacity: 1, y: 0 })
-			return
-		}
+			if (prefersReducedMotion) {
+				// Skip animations if user prefers reduced motion
+				gsap.set(ref.current, { opacity: 1, y: 0 })
+				return
+			}
 
-		const {
-			delay = 0,
-			duration = 0.8,
-			ease = "power3.out",
-			start = "top 85%",
-		} = options
+			const {
+				delay = 0,
+				duration = 0.8,
+				ease = "power3.out",
+				start = "top 85%",
+			} = options
 
-		// Set initial state
-		gsap.set(ref.current, {
-			opacity: 0,
-			y: 40,
-		})
+			// Set initial state
+			gsap.set(ref.current, {
+				opacity: 0,
+				y: 40,
+			})
 
-		// Animate on scroll
-		gsap.to(ref.current, {
-			opacity: 1,
-			y: 0,
-			duration,
-			delay,
-			ease,
-			scrollTrigger: {
-				trigger: ref.current,
-				start,
-				once: true,
-			},
-		})
-	}, [options])
+			// Animate on scroll
+			gsap.to(ref.current, {
+				opacity: 1,
+				y: 0,
+				duration,
+				delay,
+				ease,
+				scrollTrigger: {
+					trigger: ref.current,
+					start,
+					once: true,
+				},
+			})
+		},
+		{ scope: ref, dependencies: [options] },
+	)
 
 	return ref
 }
@@ -74,48 +78,51 @@ export function useScrollFadeIn(options: ScrollAnimationOptions = {}) {
 export function useScrollStagger(options: ScrollAnimationOptions = {}) {
 	const ref = useRef<HTMLElement>(null)
 
-	useEffect(() => {
-		if (!ref.current) return
+	useGSAP(
+		() => {
+			if (!ref.current) return
 
-		const prefersReducedMotion = window.matchMedia(
-			"(prefers-reduced-motion: reduce)",
-		).matches
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches
 
-		if (prefersReducedMotion) {
+			if (prefersReducedMotion) {
+				const children = ref.current.children
+				gsap.set(children, { opacity: 1, y: 0 })
+				return
+			}
+
+			const {
+				stagger = 0.1,
+				duration = 0.6,
+				ease = "power2.out",
+				start = "top 85%",
+			} = options
+
 			const children = ref.current.children
-			gsap.set(children, { opacity: 1, y: 0 })
-			return
-		}
 
-		const {
-			stagger = 0.1,
-			duration = 0.6,
-			ease = "power2.out",
-			start = "top 85%",
-		} = options
+			// Set initial state
+			gsap.set(children, {
+				opacity: 0,
+				y: 30,
+			})
 
-		const children = ref.current.children
-
-		// Set initial state
-		gsap.set(children, {
-			opacity: 0,
-			y: 30,
-		})
-
-		// Animate on scroll with stagger
-		gsap.to(children, {
-			opacity: 1,
-			y: 0,
-			duration,
-			stagger,
-			ease,
-			scrollTrigger: {
-				trigger: ref.current,
-				start,
-				once: true,
-			},
-		})
-	}, [options])
+			// Animate on scroll with stagger
+			gsap.to(children, {
+				opacity: 1,
+				y: 0,
+				duration,
+				stagger,
+				ease,
+				scrollTrigger: {
+					trigger: ref.current,
+					start,
+					once: true,
+				},
+			})
+		},
+		{ scope: ref, dependencies: [options] },
+	)
 
 	return ref
 }
@@ -126,26 +133,29 @@ export function useScrollStagger(options: ScrollAnimationOptions = {}) {
 export function useScrollParallax(speed = 0.5) {
 	const ref = useRef<HTMLElement>(null)
 
-	useEffect(() => {
-		if (!ref.current) return
+	useGSAP(
+		() => {
+			if (!ref.current) return
 
-		const prefersReducedMotion = window.matchMedia(
-			"(prefers-reduced-motion: reduce)",
-		).matches
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches
 
-		if (prefersReducedMotion) return
+			if (prefersReducedMotion) return
 
-		gsap.to(ref.current, {
-			y: () => -ScrollTrigger.maxScroll(window) * speed,
-			ease: "none",
-			scrollTrigger: {
-				trigger: document.body,
-				start: "top top",
-				end: "bottom bottom",
-				scrub: true,
-			},
-		})
-	}, [speed])
+			gsap.to(ref.current, {
+				y: () => -ScrollTrigger.maxScroll(window) * speed,
+				ease: "none",
+				scrollTrigger: {
+					trigger: document.body,
+					start: "top top",
+					end: "bottom bottom",
+					scrub: true,
+				},
+			})
+		},
+		{ scope: ref, dependencies: [speed] },
+	)
 
 	return ref
 }
@@ -157,45 +167,48 @@ export function useScrollParallax(speed = 0.5) {
 export function useScrollReveal(options: ScrollAnimationOptions = {}) {
 	const ref = useRef<HTMLElement>(null)
 
-	useEffect(() => {
-		if (!ref.current) return
+	useGSAP(
+		() => {
+			if (!ref.current) return
 
-		const prefersReducedMotion = window.matchMedia(
-			"(prefers-reduced-motion: reduce)",
-		).matches
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches
 
-		if (prefersReducedMotion) {
-			gsap.set(ref.current, { opacity: 1, y: 0 })
-			return
-		}
+			if (prefersReducedMotion) {
+				gsap.set(ref.current, { opacity: 1, y: 0 })
+				return
+			}
 
-		const {
-			delay = 0,
-			duration = 0.5,
-			ease = "power2.out",
-			start = "top 85%",
-		} = options
+			const {
+				delay = 0,
+				duration = 0.5,
+				ease = "power2.out",
+				start = "top 85%",
+			} = options
 
-		// Set initial state
-		gsap.set(ref.current, {
-			opacity: 0,
-			y: 30,
-		})
+			// Set initial state
+			gsap.set(ref.current, {
+				opacity: 0,
+				y: 30,
+			})
 
-		// Animate on scroll - only once
-		gsap.to(ref.current, {
-			opacity: 1,
-			y: 0,
-			duration,
-			delay,
-			ease,
-			scrollTrigger: {
-				trigger: ref.current,
-				start,
-				once: true,
-			},
-		})
-	}, [options])
+			// Animate on scroll - only once
+			gsap.to(ref.current, {
+				opacity: 1,
+				y: 0,
+				duration,
+				delay,
+				ease,
+				scrollTrigger: {
+					trigger: ref.current,
+					start,
+					once: true,
+				},
+			})
+		},
+		{ scope: ref, dependencies: [options] },
+	)
 
 	return ref
 }
@@ -210,34 +223,33 @@ export function useScrollTimeline(
 ) {
 	const ref = useRef<HTMLElement>(null)
 
-	useEffect(() => {
-		if (!ref.current) return
+	useGSAP(
+		() => {
+			if (!ref.current) return
 
-		const prefersReducedMotion = window.matchMedia(
-			"(prefers-reduced-motion: reduce)",
-		).matches
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches
 
-		if (prefersReducedMotion) return
+			if (prefersReducedMotion) return
 
-		const { start = "top 80%", scrub = false } = options
+			const { start = "top 80%", scrub = false } = options
 
-		// Create timeline with once: true
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: ref.current,
-				start,
-				scrub,
-				once: true,
-			},
-		})
+			// Create timeline with once: true
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: ref.current,
+					start,
+					scrub,
+					once: true,
+				},
+			})
 
-		// Execute custom animation function
-		animationFn(tl, ref.current)
-
-		return () => {
-			tl.kill()
-		}
-	}, [animationFn, options])
+			// Execute custom animation function
+			animationFn(tl, ref.current)
+		},
+		{ scope: ref, dependencies: [animationFn, options] },
+	)
 
 	return ref
 }

@@ -1,5 +1,6 @@
 "use client"
 
+import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import {
 	Briefcase,
@@ -13,7 +14,7 @@ import {
 	Sparkles,
 	TrendingUp,
 } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { useScrollStagger } from "~/shared/utils"
 import type { AboutInfo, ContactInfo } from "../portfolio-types"
 
@@ -111,7 +112,7 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 	}
 
 	// Auto-cycle animations for cards - pause on hover, click to toggle
-	useEffect(() => {
+	useGSAP(() => {
 		const cards = [
 			{ ref: experienceRef, duration: 3 },
 			{ ref: educationRef, duration: 3 },
@@ -119,7 +120,6 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 			{ ref: techStackRef, duration: 3 },
 		]
 
-		const timelines: gsap.core.Timeline[] = []
 		const cleanup: (() => void)[] = []
 
 		cards.forEach(({ ref, duration }) => {
@@ -170,7 +170,6 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 			ref.current.addEventListener("mouseleave", handleMouseLeave)
 			ref.current.addEventListener("click", handleClick)
 
-			timelines.push(tl)
 			cleanup.push(() => {
 				ref.current?.removeEventListener("mouseenter", handleMouseEnter)
 				ref.current?.removeEventListener("mouseleave", handleMouseLeave)
@@ -179,14 +178,11 @@ export function AboutSection({ about, contact }: AboutSectionProps) {
 		})
 
 		return () => {
-			for (const tl of timelines) {
-				tl.kill()
-			}
 			for (const fn of cleanup) {
 				fn()
 			}
 		}
-	}, [])
+	})
 
 	return (
 		<section
